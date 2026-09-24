@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://5ecvx78ktva0"]
+
+[ext_resource type="Script" uid="uid://c4fcuob8b818d" path="res://estatua.gd" id="1_a7mtf"]
+[ext_resource type="PackedScene" uid="uid://jqba7ju4iwgo" path="res://PJ/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb" id="2_lty3i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ycy2b"]
+
+[node name="Estatua" type="CharacterBody3D" unique_id=191699192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10066283, 0.9681257, 0.06199789)
+script = ExtResource("1_a7mtf")
+
+[node name="Modelo" type="Node3D" parent="." unique_id=920353139]
+
+[node name="Body" parent="Modelo" unique_id=2015805665 instance=ExtResource("2_lty3i")]
+transform = Transform3D(-0.9997789, -0.020049866, -0.006413332, -0.020066358, 0.99979603, 0.002516206, 0.006361639, 0.0026443433, -0.99997675, -0.077467196, -0.8482558, -0.0012970192)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=510968648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.076438665, 0.1877116, -0.037201643)
+shape = SubResource("CapsuleShape3D_ycy2b")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1104732662]
+navigation_layers = 3
+simplify_path = true
+
+[node name="Visionpoint" type="Marker3D" parent="." unique_id=732883653]
+transform = Transform3D(-0.99731445, 0, -0.073238134, 0, 1, 0, 0.073238134, 0, -0.99731445, -0.1335783, 0.8648667, -0.17475498)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." unique_id=325236415]
