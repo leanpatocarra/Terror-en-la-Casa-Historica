@@ -26,7 +26,7 @@ func _ready() -> void:
 
 	# Configuración de distancias del agente
 	nav_agent.path_desired_distance = 0.5
-	nav_agent.target_desired_distance = 5.0
+	nav_agent.target_desired_distance = 1.5
 	
 	# Esperamos un frame de físicas para que el mapa de navegación se inicialice
 	await get_tree().physics_frame

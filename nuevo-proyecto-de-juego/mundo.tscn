@@ -43,9 +43,9 @@ size = Vector3(29, 1, 29)
 material = SubResource("StandardMaterial3D_otwa2")
 
 [node name="Textura2" type="CSGBox3D" parent="NavigationRegion3D/Piso" unique_id=1103020940]
-transform = Transform3D(-0.055326827, -0.008940588, -0.9984283, 0.0044920337, 0.99994755, -0.009203104, 0.9984582, -0.0049941675, -0.055283763, -0.48141563, 0.21697141, -4.091102)
+transform = Transform3D(-0.055326827, -0.008940588, -0.9984283, 0.0044920337, 0.99994755, -0.009203104, 0.9984582, -0.0049941675, -0.055283763, 0.056587934, 5.7141833, -4.109097)
 use_collision = true
-size = Vector3(2.6728516, 11.5407715, 12.656216)
+size = Vector3(1.5878906, 11.5407715, 15.622794)
 material = SubResource("StandardMaterial3D_otwa2")
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("1_fw4w5")]
