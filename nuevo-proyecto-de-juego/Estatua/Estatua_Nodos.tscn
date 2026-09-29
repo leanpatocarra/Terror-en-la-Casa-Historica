@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://5ecvx78ktva0"]
+[gd_scene format=3 uid="uid://d28ocb8stgwn0"]
 
-[ext_resource type="Script" uid="uid://c4fcuob8b818d" path="res://estatua.gd" id="1_a7mtf"]
+[ext_resource type="Script" path="res://estatua.gd" id="1_a7mtf"]
 [ext_resource type="PackedScene" uid="uid://jqba7ju4iwgo" path="res://PJ/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb" id="2_lty3i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ycy2b"]

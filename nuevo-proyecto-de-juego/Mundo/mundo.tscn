@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bmaa2oewwulpa"]
+
+[ext_resource type="PackedScene" uid="uid://cpsaxvvwqv80r" path="res://player.tscn" id="1_fw4w5"]
+[ext_resource type="Texture2D" uid="uid://csqfydwoct6xg" path="res://piso/textures/stacked_brick_wall_diff_4k.jpg" id="1_lgngo"]
+[ext_resource type="Texture2D" uid="uid://cjndnox3ous0g" path="res://archivo internet/FPS-controller-assets-main/assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_fw4w5"]
+[ext_resource type="PackedScene" uid="uid://btt31yohlg1lh" path="res://Estatua.tscn" id="4_otwa2"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_otwa2"]
+vertices = PackedVector3Array(8.547317, 0.1332109, -5.6024275, 8.797317, 0.1332109, -3.6024275, 14.047317, 0.1332109, -3.6024275, 13.797317, 0.1332109, -14.6024275, 2.7973166, 0.1332109, -14.3524275, 2.7973166, 0.1332109, -5.8524275, -14.202683, 0.1332109, -3.8524275, -9.452683, 0.1332109, -3.3524275, -8.952683, 0.1332109, -6.3524275, -14.452683, 0.1332109, -13.8524275, -8.202683, 8.133211, -3.3524275, 7.7973166, 8.133211, -2.6024275, 7.7973166, 8.133211, -4.6024275, -8.202683, 8.133211, -5.3524275, -7.9526834, 0.1332109, -3.6024275, 7.5473166, 0.1332109, -2.8524275, 7.5473166, 0.1332109, -4.3524275, -7.9526834, 0.1332109, -5.1024275, -9.202683, 0.1332109, -2.3524275, -13.952683, 0.1332109, 6.8975725, -8.702683, 0.1332109, 6.8975725, -8.452683, 0.1332109, 6.3975725, -5.9526834, 0.1332109, 6.3975725, -4.9526834, 0.1332109, -2.1024275, -5.7026834, 0.1332109, 6.8975725, 8.547317, 0.1332109, -1.6024275, -5.9526834, 0.1332109, 7.6475725, -7.2026834, 0.1332109, 7.8975725, -7.2026834, 0.1332109, 14.1475725, 14.297317, 0.1332109, 13.6475725, -8.202683, 0.1332109, 7.8975725, -13.702683, 0.1332109, 14.3975725)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(5, 8, 4), PackedInt32Array(4, 8, 9), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(7, 18, 6), PackedInt32Array(6, 18, 21), PackedInt32Array(6, 21, 20), PackedInt32Array(6, 20, 19), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 18), PackedInt32Array(23, 24, 22), PackedInt32Array(25, 1, 2), PackedInt32Array(28, 27, 26), PackedInt32Array(26, 24, 28), PackedInt32Array(28, 24, 25), PackedInt32Array(28, 25, 2), PackedInt32Array(28, 2, 29), PackedInt32Array(24, 23, 25), PackedInt32Array(20, 30, 19), PackedInt32Array(19, 30, 31), PackedInt32Array(31, 30, 28), PackedInt32Array(30, 27, 28)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otwa2"]
+albedo_texture = ExtResource("1_lgngo")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aou4a"]
+panorama = ExtResource("2_fw4w5")
+
+[sub_resource type="Sky" id="Sky_5ckkb"]
+sky_material = SubResource("PanoramaSkyMaterial_aou4a")
+
+[sub_resource type="Environment" id="Environment_2hh7m"]
+background_mode = 2
+sky = SubResource("Sky_5ckkb")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Mundo" type="Node3D" unique_id=2094249580]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=471091789]
+transform = Transform3D(0.9994883, 0, -0.031986427, 0, 1, 0, 0.031986427, 0, 0.9994883, 0.122173786, -0.05588317, 0.024177313)
+navigation_mesh = SubResource("NavigationMesh_otwa2")
+navigation_layers = 3
+
+[node name="Piso" type="Node3D" parent="NavigationRegion3D" unique_id=1483570231]
+transform = Transform3D(0.9994884, 0, 0.03198643, 0, 1, 0, -0.03198643, 0, 0.9994884, 0.0037028734, -0.31216788, -0.14604099)
+
+[node name="Textura" type="CSGBox3D" parent="NavigationRegion3D/Piso" unique_id=296215056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(29, 1, 29)
+material = SubResource("StandardMaterial3D_otwa2")
+
+[node name="Textura2" type="CSGBox3D" parent="NavigationRegion3D/Piso" unique_id=1103020940]
+transform = Transform3D(-0.055326827, -0.008940588, -0.9984283, 0.0044920337, 0.99994755, -0.009203104, 0.9984582, -0.0049941675, -0.055283763, 0.056587934, 5.7141833, -4.109097)
+use_collision = true
+size = Vector3(1.5878906, 11.5407715, 15.622794)
+material = SubResource("StandardMaterial3D_otwa2")
+
+[node name="Player" parent="." unique_id=592294200 instance=ExtResource("1_fw4w5")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.81997114, 2.3897643, -0.2541626)
+
+[node name="Estatua" parent="." unique_id=191699192 instance=ExtResource("4_otwa2")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -7.103326, 0.79116035, 6.836404)
+
+[node name="Entorna-Iluminacion" type="Node3D" parent="." unique_id=605334823]
+transform = Transform3D(0.9994358, 0, -0.03359127, 0, 1, 0, 0.03359127, 0, 0.9994358, -0.20160055, 0.8074534, 5.7789545)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Entorna-Iluminacion" unique_id=1217442610]
+environment = SubResource("Environment_2hh7m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Entorna-Iluminacion" unique_id=1347318531]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true

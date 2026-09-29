@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cskcsgwp4kbxu"
-path="res://.godot/imported/stacked_brick_wall_disp_4k.png-cd44f1fb9cf66179511da67e3c863aea.ctex"
+path="res://.godot/imported/stacked_brick_wall_disp_4k.png-004166a227fef42d78e02d324be15678.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://piso/textures/stacked_brick_wall_disp_4k.png"
-dest_files=["res://.godot/imported/stacked_brick_wall_disp_4k.png-cd44f1fb9cf66179511da67e3c863aea.ctex"]
+source_file="res://Mundo/piso/textures/stacked_brick_wall_disp_4k.png"
+dest_files=["res://.godot/imported/stacked_brick_wall_disp_4k.png-004166a227fef42d78e02d324be15678.ctex"]
 
 [params]
 
