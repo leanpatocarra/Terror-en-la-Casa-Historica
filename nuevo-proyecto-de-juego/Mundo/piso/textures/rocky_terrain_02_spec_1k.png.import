@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xufs8b83qtsu"
-path.bptc="res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_4k.exr-9ce938bf36327d489df06aeda0d4d262.bptc.ctex"
+uid="uid://bw4dsamdcrh4h"
+path.s3tc="res://.godot/imported/rocky_terrain_02_spec_1k.png-d9732782aaabe9eb26cfd1c2a351f265.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Mundo/cielo/kloofendal_48d_partly_cloudy_puresky_4k.exr"
-dest_files=["res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_4k.exr-9ce938bf36327d489df06aeda0d4d262.bptc.ctex"]
+source_file="res://Mundo/piso/textures/rocky_terrain_02_spec_1k.png"
+dest_files=["res://.godot/imported/rocky_terrain_02_spec_1k.png-d9732782aaabe9eb26cfd1c2a351f265.s3tc.ctex"]
 
 [params]
 
