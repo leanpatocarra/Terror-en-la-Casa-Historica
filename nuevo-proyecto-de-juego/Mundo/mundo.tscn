@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bmaa2oewwulpa"]
 
-[ext_resource type="PackedScene" uid="uid://cpsaxvvwqv80r" path="res://player.tscn" id="1_fw4w5"]
-[ext_resource type="Texture2D" uid="uid://csqfydwoct6xg" path="res://piso/textures/stacked_brick_wall_diff_4k.jpg" id="1_lgngo"]
+[ext_resource type="PackedScene" uid="uid://cpsaxvvwqv80r" path="res://PJ/player.tscn" id="1_fw4w5"]
+[ext_resource type="Texture2D" uid="uid://csqfydwoct6xg" path="res://Mundo/piso/textures/stacked_brick_wall_diff_4k.jpg" id="1_lgngo"]
 [ext_resource type="Texture2D" uid="uid://cjndnox3ous0g" path="res://archivo internet/FPS-controller-assets-main/assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_fw4w5"]
-[ext_resource type="PackedScene" uid="uid://btt31yohlg1lh" path="res://Estatua.tscn" id="4_otwa2"]
+[ext_resource type="PackedScene" uid="uid://btt31yohlg1lh" path="res://Estatua/Estatua.tscn" id="4_otwa2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_otwa2"]
 vertices = PackedVector3Array(8.547317, 0.1332109, -5.6024275, 8.797317, 0.1332109, -3.6024275, 14.047317, 0.1332109, -3.6024275, 13.797317, 0.1332109, -14.6024275, 2.7973166, 0.1332109, -14.3524275, 2.7973166, 0.1332109, -5.8524275, -14.202683, 0.1332109, -3.8524275, -9.452683, 0.1332109, -3.3524275, -8.952683, 0.1332109, -6.3524275, -14.452683, 0.1332109, -13.8524275, -8.202683, 8.133211, -3.3524275, 7.7973166, 8.133211, -2.6024275, 7.7973166, 8.133211, -4.6024275, -8.202683, 8.133211, -5.3524275, -7.9526834, 0.1332109, -3.6024275, 7.5473166, 0.1332109, -2.8524275, 7.5473166, 0.1332109, -4.3524275, -7.9526834, 0.1332109, -5.1024275, -9.202683, 0.1332109, -2.3524275, -13.952683, 0.1332109, 6.8975725, -8.702683, 0.1332109, 6.8975725, -8.452683, 0.1332109, 6.3975725, -5.9526834, 0.1332109, 6.3975725, -4.9526834, 0.1332109, -2.1024275, -5.7026834, 0.1332109, 6.8975725, 8.547317, 0.1332109, -1.6024275, -5.9526834, 0.1332109, 7.6475725, -7.2026834, 0.1332109, 7.8975725, -7.2026834, 0.1332109, 14.1475725, 14.297317, 0.1332109, 13.6475725, -8.202683, 0.1332109, 7.8975725, -13.702683, 0.1332109, 14.3975725)
