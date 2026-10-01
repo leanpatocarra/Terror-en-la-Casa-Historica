@@ -23,14 +23,15 @@ func _ready() -> void:
 		print("¡Jugador encontrado con éxito!")
 	else:
 		push_warning("Aviso: No se encontró ningún nodo llamado 'Player' en la escena.")
-
+	
+		
 	# Configuración de distancias del agente
 	nav_agent.path_desired_distance = 0.5
 	nav_agent.target_desired_distance = 5.0
 	
 	# Esperamos un frame de físicas para que el mapa de navegación se inicialice
 	await get_tree().physics_frame
-
+	print("Mapa de navegación válido: ", nav_agent.get_navigation_map().is_valid())
 
 # Esta función será llamada por el Player
 func ser_mirada(estado: bool) -> void:
@@ -73,7 +74,14 @@ func _physics_process(delta: float) -> void:
 
 		# Actualizamos la posición destino del agente hacia el jugador
 		nav_agent.target_position = player.global_transform.origin
-		
+		print("OBJETIVO ALCANZABLE: ", nav_agent.is_target_reachable())
+		print(
+	"ESTATUA: ", global_position,
+	" | PLAYER: ", player.global_position,
+	" | SIGUIENTE: ", nav_agent.get_next_path_position(),
+	" | TERMINADO: ", nav_agent.is_navigation_finished()
+)
+		print("CANTIDAD DE PUNTOS: ", nav_agent.get_current_navigation_path().size())
 		# Si ya llegó al rango del jugador
 		if nav_agent.is_navigation_finished():
 			velocity.x = 0.0
@@ -99,6 +107,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction.x * SPEED
 				velocity.z = direction.z * SPEED
 				
+				print("ESTATUA MOVIÉNDOSE - VELOCIDAD: ", velocity)
 				# Orientar estatua
 				var look_target = current_position + direction
 				
