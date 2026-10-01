@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cs3p2cdsyjf2f"
-path="res://.godot/imported/UAL1_Standard.fbx-3987c35105e2bf94e302a8300eae5563.scn"
+uid="uid://dy7irjfjk04ld"
+path="res://.godot/imported/Doors_RoundArch.fbx-baf8f289c7db9e9916bb7f972bb81a77.scn"
 
 [deps]
 
-source_file="res://PJ/Universal Animation Library[Standard]/Unity/UAL1_Standard.fbx"
-dest_files=["res://.godot/imported/UAL1_Standard.fbx-3987c35105e2bf94e302a8300eae5563.scn"]
+source_file="res://Mundo/piso/textures/Doors_RoundArch.fbx"
+dest_files=["res://.godot/imported/Doors_RoundArch.fbx-baf8f289c7db9e9916bb7f972bb81a77.scn"]
 
 [params]
 

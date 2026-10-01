@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 var correr = 8.0
 var JUMP_VELOCITY = 4.5
-var caminar = 40.6
+var caminar = 40.0
 
 @onready var anim_player: AnimationPlayer = $Modelo/Body/AnimationPlayer
 @onready var raycast_vision: RayCast3D = $Head/Camera3D/RayCast3D

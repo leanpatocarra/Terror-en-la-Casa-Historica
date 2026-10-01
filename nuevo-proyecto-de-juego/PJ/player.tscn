@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cpsaxvvwqv80r"]
 
-[ext_resource type="Script" uid="uid://d06w4qwkvwj2l" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://d06w4qwkvwj2l" path="res://PJ/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://jqba7ju4iwgo" path="res://PJ/Universal Animation Library[Standard]/Unreal-Godot/UAL1_Standard.glb" id="2_i3pqv"]
-[ext_resource type="Script" uid="uid://bc2kych0261vl" path="res://head.gd" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://bc2kych0261vl" path="res://PJ/head.gd" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
