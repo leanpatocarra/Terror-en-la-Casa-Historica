@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xufs8b83qtsu"
-path.bptc="res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_4k.exr-9ce938bf36327d489df06aeda0d4d262.bptc.ctex"
+uid="uid://d4lcdp7g0aqq4"
+path="res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mundo/cielo/kloofendal_48d_partly_cloudy_puresky_4k.exr"
-dest_files=["res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_4k.exr-9ce938bf36327d489df06aeda0d4d262.bptc.ctex"]
+source_file="res://Mundo/piso/textures/rocky_terrain_02_disp_1k.png"
+dest_files=["res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

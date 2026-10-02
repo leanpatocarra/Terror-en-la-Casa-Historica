@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # --- CONFIGURACIÓN DE MOVIMIENTO ---
 @export var SPEED: float = 3.0
-const GRAVITY: float = 9.8
+const GRAVITY: float = 40.8
 
 # --- REFERENCIAS A NODOS INTERNOS ---
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
