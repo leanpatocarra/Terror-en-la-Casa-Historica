@@ -10,6 +10,7 @@ var caminar = 40.0
 
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var estatua_referencia: CharacterBody3D = null
 
 func _ready() -> void:
 	anim_player.play("Idle")
@@ -59,23 +60,21 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+
 # =========================================================
 # COMPROBAR SI ESTAMOS MIRANDO A LA ESTATUA
 # =========================================================
 func comprobar_vision() -> void:
-
+	# Si el RayCast está colisionando con algo
 	if raycast_vision.is_colliding():
-
 		var objeto = raycast_vision.get_collider()
 
-		if objeto is CharacterBody3D and objeto.name == "Estatua":
-
+		# Verificamos si el objeto que el RayCast está tocando tiene el método de la estatua
+		if objeto and objeto.has_method("ser_mirada"):
 			objeto.ser_mirada(true)
-			return
+			print("laestatuaestasiendomirada")
+			return # Cortamos la ejecución aquí, está siendo mirada.
 
-
-	# Si no estamos mirando a la estatua
-	var estatua = get_tree().current_scene.find_child("Estatua", true, false)
-
-	if estatua and estatua.has_method("ser_mirada"):
-		estatua.ser_mirada(false)
+	# Si el RayCast no está tocando a la estatua, usamos nuestra referencia para avisarle que es libre de moverse
+	if estatua_referencia and is_instance_valid(estatua_referencia):
+		estatua_referencia.ser_mirada(false)

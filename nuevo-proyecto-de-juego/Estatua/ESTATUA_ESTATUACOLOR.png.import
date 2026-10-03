@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4lcdp7g0aqq4"
-path.s3tc="res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.s3tc.ctex"
+uid="uid://cgxweia456bue"
+path.s3tc="res://.godot/imported/ESTATUA_ESTATUACOLOR.png-0b1fbd56dc5a8f0e342f9ffe357f7b7e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "575db45f41537d04fbc02e73e363811a"
+}
 
 [deps]
 
-source_file="res://Mundo/piso/textures/rocky_terrain_02_disp_1k.png"
-dest_files=["res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.s3tc.ctex"]
+source_file="res://Estatua/ESTATUA_ESTATUACOLOR.png"
+dest_files=["res://.godot/imported/ESTATUA_ESTATUACOLOR.png-0b1fbd56dc5a8f0e342f9ffe357f7b7e.s3tc.ctex"]
 
 [params]
 

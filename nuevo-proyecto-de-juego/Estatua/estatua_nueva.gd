@@ -4,9 +4,9 @@ extends CharacterBody3D
 @export var SPEED: float = 15.0
 const GRAVITY: float = 9.8
 
-# --- REFERENCIAS A NODOS INTERNOS ---
+# --- REFERENCIAS A NODOS INTERNOS CORREGIDAS ---
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var anim_player: AnimationPlayer = $Modelo/Body/AnimationPlayer
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 # --- REFERENCIA AL JUGADOR ---
 var player: CharacterBody3D = null
@@ -16,12 +16,13 @@ var jugador_mirando: bool = false
 
 
 func _ready() -> void:
-	anim_player = get_node_or_null("AnimationPlayer") as AnimationPlayer
+	# Verificación del AnimationPlayer en consola al arrancar
 	if anim_player:
 		print("AnimationPlayer encontrado: ", anim_player.get_path())
 		print("Animaciones disponibles: ", anim_player.get_animation_list())
 	else:
 		push_error("No se encontró el AnimationPlayer de la nueva estatua")
+		
 	# BUSCAR AL JUGADOR POR NOMBRE EN LA ESCENA
 	var jugador_encontrado = get_tree().current_scene.find_child("Player", true, false)
 	if jugador_encontrado is CharacterBody3D:
@@ -32,13 +33,14 @@ func _ready() -> void:
 
 	# Configuración de distancias del agente
 	nav_agent.path_desired_distance = 0.5
-	nav_agent.target_desired_distance = 5.0
+	nav_agent.target_desired_distance = 1.0
+	
 	
 	# Esperamos un frame de físicas para que el mapa de navegación se inicialice
 	await get_tree().physics_frame
 
 
-# Esta función será llamada por el Player
+# Esta función será llamada por el Player mediante el RayCast3D
 func ser_mirada(estado: bool) -> void:
 	jugador_mirando = estado
 
@@ -111,10 +113,10 @@ func _physics_process(delta: float) -> void:
 				if current_position.distance_to(look_target) > 0.1:
 					look_at(look_target, Vector3.UP)
 				
-				# Animación caminar
-				if anim_player and anim_player.has_animation("Walk"):
-					if anim_player.current_animation != "Walk":
-						anim_player.play("Walk")
+				# Animación caminar formal
+				if anim_player and anim_player.has_animation("Walk_Formal"):
+					if anim_player.current_animation != "Walk_Formal":
+						anim_player.play("Walk_Formal")
 
 			else:
 				velocity.x = 0.0
@@ -124,5 +126,5 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0.0
 		velocity.z = 0.0
 
-	# 4. Aplicar movimiento
+	# 4. Aplicar movimiento físico en el motor
 	move_and_slide()

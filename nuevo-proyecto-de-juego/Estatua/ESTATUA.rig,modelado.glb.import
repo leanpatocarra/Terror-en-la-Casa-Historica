@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cs3p2cdsyjf2f"
-path="res://.godot/imported/UAL1_Standard.fbx-3987c35105e2bf94e302a8300eae5563.scn"
+uid="uid://btqgu8lhscdf0"
+path="res://.godot/imported/ESTATUA.rig,modelado.glb-2a11ff3b14bf02245f79ff96e299d4fd.scn"
 
 [deps]
 
-source_file="res://PJ/Universal Animation Library[Standard]/Unity/UAL1_Standard.fbx"
-dest_files=["res://.godot/imported/UAL1_Standard.fbx-3987c35105e2bf94e302a8300eae5563.scn"]
+source_file="res://Estatua/ESTATUA.rig,modelado.glb"
+dest_files=["res://.godot/imported/ESTATUA.rig,modelado.glb-2a11ff3b14bf02245f79ff96e299d4fd.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -38,7 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1

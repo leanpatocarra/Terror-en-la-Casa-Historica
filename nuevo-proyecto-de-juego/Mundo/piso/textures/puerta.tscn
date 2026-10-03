@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://tqptsno3bdt8"]
-
-[ext_resource type="PackedScene" uid="uid://dy7irjfjk04ld" path="res://Mundo/piso/textures/Doors_RoundArch.fbx" id="1_6onor"]
-
-[node name="Doors_RoundArch" unique_id=33019220 instance=ExtResource("1_6onor")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
