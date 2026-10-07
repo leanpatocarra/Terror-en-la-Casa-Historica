@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csqfydwoct6xg"
-path.s3tc="res://.godot/imported/stacked_brick_wall_diff_4k.jpg-5d142cdf555b501c29d7edc16db9c67b.s3tc.ctex"
+uid="uid://7o0xm532u8w8"
+path.s3tc="res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Flowers.png-e08ee1beea756588fe8179d994ae5f25.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "45566f246bb91ea26e812cac641b494f"
+}
 
 [deps]
 
-source_file="res://Mundo/piso/textures/stacked_brick_wall_diff_4k.jpg"
-dest_files=["res://.godot/imported/stacked_brick_wall_diff_4k.jpg-5d142cdf555b501c29d7edc16db9c67b.s3tc.ctex"]
+source_file="res://Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356_Flowers.png"
+dest_files=["res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Flowers.png-e08ee1beea756588fe8179d994ae5f25.s3tc.ctex"]
 
 [params]
 

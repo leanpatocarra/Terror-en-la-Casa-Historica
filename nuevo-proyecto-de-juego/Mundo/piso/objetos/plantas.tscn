@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bt4dgcmh1fg7p"]
+
+[ext_resource type="PackedScene" uid="uid://cye6jc2o6avyl" path="res://Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356.glb" id="1_e1lt7"]
+
+[node name="Root Scene" unique_id=226774483 instance=ExtResource("1_e1lt7")]

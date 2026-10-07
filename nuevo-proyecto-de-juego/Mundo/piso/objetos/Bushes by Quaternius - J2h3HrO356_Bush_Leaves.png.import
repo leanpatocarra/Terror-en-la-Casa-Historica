@@ -2,20 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qk1gk10iwoim"
-path="res://.godot/imported/clay_roof_tiles_02_disp_1k.png-3f5be6ed7ffa922f49ed0ab14afe0e5c.ctex"
+uid="uid://dwpfbawbj70ma"
+path.s3tc="res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Bush_Leaves.png-00ace6227cf2739028f421f375a18f11.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "9cd30b574ee4effdc19cf9575cbae54f"
 }
 
 [deps]
 
-source_file="res://Mundo/piso/textures/clay_roof_tiles_02_disp_1k.png"
-dest_files=["res://.godot/imported/clay_roof_tiles_02_disp_1k.png-3f5be6ed7ffa922f49ed0ab14afe0e5c.ctex"]
+source_file="res://Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356_Bush_Leaves.png"
+dest_files=["res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Bush_Leaves.png-00ace6227cf2739028f421f375a18f11.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +27,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
