@@ -966,6 +966,12 @@ size = Vector3(3.9966817, 1.9952989, 3.3799858)
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
 transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -105.63227, 3.1004372, 51.153534)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=316596278]
+
+[node name="BarraStamina" type="ProgressBar" parent="Player/CanvasLayer" unique_id=1298595564]
+offset_right = 219.0
+offset_bottom = 27.0
+
 [node name="ESTATUA_rig,modelado" parent="." unique_id=1886735409 instance=ExtResource("11_y4ujb")]
 transform = Transform3D(-1.4994997, 0, 0.038741946, 0, 1.5, 0, -0.038741946, 0, -1.4994997, -90.228165, 1.9147973, -16.72007)
 
