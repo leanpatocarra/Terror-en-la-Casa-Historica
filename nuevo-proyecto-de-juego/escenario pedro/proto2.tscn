@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://1pne0pwx541k" path="res://escenario pedro/piso_fondo.gd" id="1_i7a25"]
 [ext_resource type="Texture2D" uid="uid://ld2im22e0ssw" path="res://Mundo/piso/textures/piedra5_diff_1k.jpg" id="3_ef8rt"]
 [ext_resource type="PackedScene" uid="uid://cpsaxvvwqv80r" path="res://PJ/player.tscn" id="3_fwwnx"]
-[ext_resource type="Texture2D" uid="uid://xufs8b83qtsu" path="res://Mundo/cielo/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="4_fwwnx"]
 [ext_resource type="Texture2D" uid="uid://dxcxxyjj3sbgh" path="res://Mundo/piso/textures/prueba tamaño mas chico.png" id="4_orga1"]
 [ext_resource type="Texture2D" uid="uid://c6mtqiddv3ana" path="res://Mundo/piso/textures/wood_table_worn_diff_1k.jpg" id="5_j153e"]
 [ext_resource type="Texture2D" uid="uid://ce1y68tdq101k" path="res://Mundo/piso/textures/white_stucco_diff_1k.jpg" id="5_orga1"]
 [ext_resource type="Texture2D" uid="uid://cqxktedoml6g2" path="res://Mundo/piso/textures/rocky_terrain_02_diff_1k.jpg" id="6_ef8rt"]
+[ext_resource type="Texture2D" uid="uid://ogyaeofe2p4p" path="res://Mundo/cielo/sky_night.png" id="8_y4ujb"]
 [ext_resource type="PackedScene" uid="uid://dy7irjfjk04ld" path="res://Mundo/piso/textures/Doors_RoundArch.fbx" id="10_4v22u"]
 [ext_resource type="PackedScene" uid="uid://b4uu2ujec6jyy" path="res://Mundo/piso/textures/doors_.tscn" id="11_1lt30"]
 [ext_resource type="PackedScene" uid="uid://cbrli51avh38" path="res://Estatua/Estatua_Nueva.tscn" id="11_y4ujb"]
@@ -294,7 +294,8 @@ albedo_texture = ExtResource("5_j153e")
 albedo_texture = ExtResource("5_j153e")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b1lj4"]
-panorama = ExtResource("4_fwwnx")
+panorama = ExtResource("8_y4ujb")
+energy_multiplier = 0.97
 
 [sub_resource type="Sky" id="Sky_13qdw"]
 sky_material = SubResource("PanoramaSkyMaterial_b1lj4")
@@ -306,6 +307,7 @@ sky = SubResource("Sky_13qdw")
 [node name="Base" type="Node3D" unique_id=1565331911]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=929541830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2967415, 0.18707466, 0.89310455)
 navigation_mesh = SubResource("NavigationMesh_ef8rt")
 navigation_layers = 3
 
@@ -957,15 +959,15 @@ environment = SubResource("Environment_xrivr")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1206423055]
 
 [node name="EstatuaBase" type="CSGBox3D" parent="." unique_id=733801533]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.591995, 0.35520506, -15.898706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.75981, 0.35520506, -16.871626)
 use_collision = true
-size = Vector3(2.3703165, 1.9952989, 2.1750107)
+size = Vector3(3.9966817, 1.9952989, 3.3799858)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -99.506424, 7.344059, 19.081608)
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -105.63227, 3.1004372, 51.153534)
 
 [node name="ESTATUA_rig,modelado" parent="." unique_id=1886735409 instance=ExtResource("11_y4ujb")]
-transform = Transform3D(-1.4994997, 0, 0.038741946, 0, 1.5, 0, -0.038741946, 0, -1.4994997, -88.39135, -0.52191496, -36.388172)
+transform = Transform3D(-1.4994997, 0, 0.038741946, 0, 1.5, 0, -0.038741946, 0, -1.4994997, -90.228165, 1.9147973, -16.72007)
 
 [node name="ESTATUA_rig,modelado2" parent="." unique_id=8013932 instance=ExtResource("11_y4ujb")]
 transform = Transform3D(-0.99927425, 0, 0.038091414, 0, 1, 0, -0.038091414, 0, -0.99927425, 38.354557, -0.38339567, -30.918453)
