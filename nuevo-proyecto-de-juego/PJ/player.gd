@@ -4,24 +4,23 @@ extends CharacterBody3D
 # MOVIMIENTO
 # =========================================================
 
-var correr = 20.0
-var JUMP_VELOCITY = 4.5
-var caminar = 10.6
-var velocidad_actual = 10.6  # <- CORREGIDO: Se declaró la variable que faltaba
+var correr = 35.0
+var JUMP_VELOCITY = 5.2
+var caminar = 16.6
+var velocidad_actual = 10.6
 
 # ========================================================= 
 # STAMINA / SPRINT 
 # ========================================================= 
 @export var max_stamina: float = 100.0 
-var current_stamina: float = 100.0 # Cantidad de stamina que gasta por segundo corriendo 
-@export var stamina_drain_rate: float = 25.0 # Cantidad de stamina que recupera por segundo 
+var current_stamina: float = 100.0 
+@export var stamina_drain_rate: float = 25.0 
 @export var stamina_recover_rate: float = 15.0
 @onready var barra_stamina: ProgressBar = $CanvasLayer/BarraStamina
-# Variable de control para evitar correr sin la estamina mínima (20%)
 var cansado: bool = false
 
 # =========================================================
-# SANIDAD
+# SANIDAD E INMERSIÓN
 # =========================================================
 
 @export var max_sanity: float = 100.0
@@ -30,8 +29,15 @@ var current_sanity: float = 100.0
 @export var sanity_drain_rate: float = 15.0
 @export var sanity_recover_rate: float = 5.0
 
+# REFERENCIAS DE UI Y AUDIO
+@onready var filtro_oscuridad: ColorRect = $CanvasLayer/FiltroOscuridad
+@onready var audio_respiracion: AudioStreamPlayer = get_node_or_null("AudioRespiracion")
+
+# Estado de muerte para bloquear entradas
+var esta_muerto: bool = false
+
 # =========================================================
-# REFERENCIAS
+# REFERENCIAS DE COMPONENTES
 # =========================================================
 
 @onready var anim_player: AnimationPlayer = $Modelo/Body/AnimationPlayer
@@ -48,39 +54,49 @@ var estatua_referencia: CharacterBody3D = null
 # =========================================================
 
 func _ready() -> void:
-	anim_player.play("Idle")
-	raycast_vision.target_position = Vector3(0, 0, -20)
 	current_sanity = max_sanity
 	current_stamina = max_stamina
+
+	# Forzamos transparencia 0 en la visión al arrancar el nivel
+	if filtro_oscuridad:
+		filtro_oscuridad.color.a = 0.0
+
+	if anim_player and anim_player.has_animation("Idle"):
+		anim_player.play("Idle")
+		
+	raycast_vision.target_position = Vector3(0, 0, -20)
+
 	if barra_stamina:
 		barra_stamina.max_value = max_stamina
 		barra_stamina.value = current_stamina
+
+	actualizar_efectos_sanidad()
 
 # =========================================================
 # FÍSICA
 # =========================================================
 
 func _physics_process(delta: float) -> void:
+	# Si el jugador está muerto, frena y bloquea todo input
+	if esta_muerto:
+		return
 
 	# -----------------------------------------------------
-	# VISIÓN + SANIDAD
+	# 1. VISIÓN + SANIDAD
 	# -----------------------------------------------------
 	comprobar_vision_y_sanidad(delta)
 
 	# -----------------------------------------------------
-	# GRAVEDAD
+	# 2. GRAVEDAD Y SALTO
 	# -----------------------------------------------------
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# -----------------------------------------------------
-	# SALTO
-	# -----------------------------------------------------
 	if Input.is_action_just_pressed("Saltar") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# -----------------------------------------------------
-	# MOVIMIENTO
+	# 3. DIRECCIÓN DE MOVIMIENTO
 	# -----------------------------------------------------
 	var input_dir := Input.get_vector(
 		"Izquierda",
@@ -89,31 +105,13 @@ func _physics_process(delta: float) -> void:
 		"Atras"
 	)
 
-
 	var direction := (
 		transform.basis *
 		Vector3(input_dir.x, 0, input_dir.y)
 	).normalized()
 
-	if direction:
-		# CORREGIDO: Ahora usa 'velocidad_actual' en lugar de 'caminar' fijo
-		velocity.x = direction.x * velocidad_actual
-		velocity.z = direction.z * velocidad_actual
-
-		# Opcional: Cambiar animación según velocidad
-		if velocidad_actual == correr:
-			anim_player.play("Sprint") # Cambia por el nombre de tu animación de correr si existe
-		else:
-			anim_player.play("Walk")
-	else:
-		velocity.x = move_toward(velocity.x, 0, velocidad_actual)
-		velocity.z = move_toward(velocity.z, 0, velocidad_actual)
-		anim_player.play("Idle")
-
-	move_and_slide()
-
-# -----------------------------------------------------
-	# 4. LÓGICA DE STAMINA Y EXHAUSTIVIDAD (20% MÍNIMO)
+	# -----------------------------------------------------
+	# 4. LÓGICA DE STAMINA Y CANSANCIO (20% MÍNIMO)
 	# -----------------------------------------------------
 	if current_stamina <= 0.0:
 		cansado = true
@@ -135,20 +133,21 @@ func _physics_process(delta: float) -> void:
 		barra_stamina.value = current_stamina
 
 	# -----------------------------------------------------
-	# 5. APLICAR VELOCIDAD Y ANIMACIÓN
+	# 5. APLICAR VELOCIDAD Y ANIMACIÓN DE MOVIMIENTO
 	# -----------------------------------------------------
 	if direction:
 		velocity.x = direction.x * velocidad_actual
 		velocity.z = direction.z * velocidad_actual
 
-		if velocidad_actual == correr and anim_player.has_animation("Sprint"):
+		if velocidad_actual == correr and anim_player and anim_player.has_animation("Sprint"):
 			anim_player.play("Sprint")
-		else:
+		elif anim_player and anim_player.has_animation("Walk"):
 			anim_player.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidad_actual)
 		velocity.z = move_toward(velocity.z, 0, velocidad_actual)
-		anim_player.play("Idle")
+		if anim_player and anim_player.has_animation("Idle"):
+			anim_player.play("Idle")
 
 	move_and_slide()
 
@@ -177,16 +176,38 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 		recuperar_sanidad(delta)
 
 # =========================================================
+# ACTUALIZAR SANIDAD (EFECTOS VISUALES Y AUDITIVOS)
+# =========================================================
+
+func actualizar_efectos_sanidad() -> void:
+	# Porcentaje de cordura perdida (0.0 = sanidad llena, 1.0 = sanidad en cero)
+	var perdida: float = 1.0 - (current_sanity / max_sanity)
+
+	# 1. Filtro de oscuridad: aumenta la opacidad (Alpha) del ColorRect
+	if filtro_oscuridad:
+		filtro_oscuridad.color.a = perdida
+
+	# 2. Control de audio de respiración
+	if audio_respiracion:
+		if perdida > 0.1:
+			if not audio_respiracion.playing:
+				audio_respiracion.play()
+			audio_respiracion.volume_db = lerp(-20.0, 5.0, perdida)
+		else:
+			if audio_respiracion.playing:
+				audio_respiracion.stop()
+
+# =========================================================
 # PERDER SANIDAD
 # =========================================================
 
 func perder_sanidad(delta: float) -> void:
 	current_sanity -= sanity_drain_rate * delta
 	current_sanity = clamp(current_sanity, 0.0, max_sanity)
-	print("Sanidad actual: ", int(current_sanity))
+	actualizar_efectos_sanidad()
 
-	if current_sanity <= 0:
-		game_over()
+	if current_sanity <= 0 and not esta_muerto:
+		morir()
 
 # =========================================================
 # RECUPERAR SANIDAD
@@ -196,18 +217,38 @@ func recuperar_sanidad(delta: float) -> void:
 	if current_sanity < max_sanity:
 		current_sanity += sanity_recover_rate * delta
 		current_sanity = clamp(current_sanity, 0.0, max_sanity)
+		actualizar_efectos_sanidad()
 
 # =========================================================
-# GAME OVER
+# LÓGICA DE MUERTE Y GAME OVER
 # =========================================================
 
-func game_over() -> void:
-	print("¡Has perdido la cordura por completo!")
-	get_tree().change_scene_to_file("res://game_over.tscn")
+func morir() -> void:
+	if esta_muerto:
+		return
+		
+	esta_muerto = true
+	velocity = Vector3.ZERO
+	print("--- INICIANDO SECUENCIA DE MUERTE ---")
 
-# =========================================================
-# BOTÓN
-# =========================================================
+	# 1. Intentar reproducir la animación
+	if anim_player and anim_player.has_animation("Death01"):
+		print("Reproduciendo animación: Death01")
+		anim_player.play("Death01")
+	elif anim_player and anim_player.has_animation("Death"):
+		print("Reproduciendo animación: Death")
+		anim_player.play("Death")
+
+	# 2. Esperar 2 segundos (tiempo para ver caer al personaje) sin congelar el código
+	print("Esperando que termine la secuencia visual...")
+	await get_tree().create_timer(2.0).timeout
+
+	# 3. Cambiar de escena forzadamente
+	print("Cambiando a escena de Game Over...")
+	var error_code = get_tree().change_scene_to_file("res://game_over.tscn")
+	
+	if error_code != OK:
+		print("ERROR al cambiar de escena. Código de error: ", error_code)
 
 func _on_button_pressed() -> void:
 	pass
