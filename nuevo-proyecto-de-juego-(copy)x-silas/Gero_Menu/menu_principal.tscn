@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ddu8li8s60j6e"]
+
+[ext_resource type="Script" uid="uid://djkumw172qbl3" path="res://Gero_Menu/menu_principal.gd" id="1_bj1uy"]
+
+[node name="MenuPrincipal" type="Control" unique_id=144992447]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 555.0
+offset_top = 129.0
+offset_right = 595.0
+offset_bottom = 169.0
+script = ExtResource("1_bj1uy")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1116269312]
+layout_mode = 0
+offset_left = -559.0
+offset_top = -122.0
+offset_right = 589.0
+offset_bottom = 530.0
+color = Color(0, 0, 0, 1)
+
+[node name="Botonera" type="VBoxContainer" parent="." unique_id=74786207]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LabelTitulo" type="Label" parent="Botonera" unique_id=2006241324]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "El museo"
+
+[node name="BtnJugar" type="Button" parent="Botonera" unique_id=1533896436]
+layout_mode = 2
+text = "Jugar"
+
+[node name="BtnSalir" type="Button" parent="Botonera" unique_id=3110711]
+layout_mode = 2
+text = "Salir"

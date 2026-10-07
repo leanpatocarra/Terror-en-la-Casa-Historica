@@ -2,7 +2,6 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:nuevo-proyecto-de-juego/Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356_Flowers.png.import
 uid="uid://7o0xm532u8w8"
 path.s3tc="res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Flowers.png-e08ee1beea756588fe8179d994ae5f25.s3tc.ctex"
 metadata={
@@ -11,24 +10,12 @@ metadata={
 }
 generator_parameters={
 "md5": "45566f246bb91ea26e812cac641b494f"
-=======
-uid="uid://d4lcdp7g0aqq4"
-path.s3tc="res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
->>>>>>> 1229166a871a17b5e6a8ae737637bacd4f0c3e50:nuevo-proyecto-de-juego/Mundo/piso/textures/rocky_terrain_02_disp_1k.png.import
 }
 
 [deps]
 
-<<<<<<< HEAD:nuevo-proyecto-de-juego/Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356_Flowers.png.import
 source_file="res://Mundo/piso/objetos/Bushes by Quaternius - J2h3HrO356_Flowers.png"
 dest_files=["res://.godot/imported/Bushes by Quaternius - J2h3HrO356_Flowers.png-e08ee1beea756588fe8179d994ae5f25.s3tc.ctex"]
-=======
-source_file="res://Mundo/piso/textures/rocky_terrain_02_disp_1k.png"
-dest_files=["res://.godot/imported/rocky_terrain_02_disp_1k.png-348edbe74321d534cc53a6aff7284a99.s3tc.ctex"]
->>>>>>> 1229166a871a17b5e6a8ae737637bacd4f0c3e50:nuevo-proyecto-de-juego/Mundo/piso/textures/rocky_terrain_02_disp_1k.png.import
 
 [params]
 
