@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8b3e1f4jj5bv"
+path="res://.godot/imported/sonido maldicion.mp3-70157a31c3884e7682e4d7fc59f67a54.mp3str"
+
+[deps]
+
+source_file="res://Sonidos_Ignacio/ambiente/sonido maldicion.mp3"
+dest_files=["res://.godot/imported/sonido maldicion.mp3-70157a31c3884e7682e4d7fc59f67a54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

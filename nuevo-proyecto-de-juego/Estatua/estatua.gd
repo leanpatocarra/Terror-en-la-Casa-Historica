@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 # --- CONFIGURACIÓN DE MOVIMIENTO ---
-@export var SPEED: float = 3.0
-const GRAVITY: float = 40.8
+@export var SPEED: float = 15.0
+const GRAVITY: float = 9.8
 
 # --- REFERENCIAS A NODOS INTERNOS ---
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -16,6 +16,12 @@ var jugador_mirando: bool = false
 
 
 func _ready() -> void:
+	anim_player = get_node_or_null("AnimationPlayer") as AnimationPlayer
+	if anim_player:
+		print("AnimationPlayer encontrado: ", anim_player.get_path())
+		print("Animaciones disponibles: ", anim_player.get_animation_list())
+	else:
+		push_error("No se encontró el AnimationPlayer de la nueva estatua")
 	# BUSCAR AL JUGADOR POR NOMBRE EN LA ESCENA
 	var jugador_encontrado = get_tree().current_scene.find_child("Player", true, false)
 	if jugador_encontrado is CharacterBody3D:

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c32esxynpmy8w"]
+
+[ext_resource type="Script" uid="uid://es3m4swww54v" path="res://Gero_Menu/menu_pausa.gd" id="1_jd2x8"]
+
+[node name="MenuPausa" type="Control" unique_id=1910793488]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jd2x8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2055596411]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=74540135]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "PAUSA"
+
+[node name="BtnJugar" type="Button" parent="VBoxContainer" unique_id=556358128]
+layout_mode = 2
+text = "Continuar"
+
+[node name="BtnSalir" type="Button" parent="VBoxContainer" unique_id=193660505]
+layout_mode = 2
+text = "Salir
+"
+
+[connection signal="pressed" from="VBoxContainer/BtnJugar" to="." method="_on_btn_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnSalir" to="." method="_on_btn_salir_pressed"]
