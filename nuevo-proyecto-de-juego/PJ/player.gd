@@ -48,6 +48,7 @@ var esta_muerto: bool = false
 # =========================================================
 
 var estatua_referencia: CharacterBody3D = null
+var evento_activado: bool = false
 
 # =========================================================
 # INICIO
@@ -162,16 +163,48 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 	var mirando_a_estatua := false
 	var estatua_esta_cerca := false
 
-	# 1. PASO DE FRENTE: Verificar si el RayCast la cruza
-	if raycast_vision.is_colliding():
+	# =========================================================
+	# 1. DETECCIÓN DEL RAYCAST E INTERACCIÓN SEGURA
+	# =========================================================
+	if raycast_vision and raycast_vision.is_colliding():
 		var objeto = raycast_vision.get_collider()
-		if objeto and objeto.has_method("ser_mirada"):
-			if estatua_referencia != objeto:
-				estatua_referencia = objeto
-			mirando_a_estatua = true
-			objeto.ser_mirada(true)
+		
+		# Verificamos que el objeto siga existiendo en memoria antes de leerlo
+		if is_instance_valid(objeto):
+			
+			# Print de diagnóstico seguro
+			print("[RAYCAST MIRANDO A]: ", objeto.name)
+			
+			# Detectar el papel / objetos interactuables
+			if objeto.has_method("interactuar"):
+				print(">>> ¡¡¡ÉXITO: RAYCAST DETECTÓ EL PAPEL!!! <<<")
+				
+				if Input.is_action_just_pressed("interactuar"):
+					print(">>> [TECLA PRESIONADA] Se interactuó con el papel <<<")
+					objeto.interactuar()
+					evento_activado = true # Se activa la persecución/evento
 
-	# 2. PASO DE POSICIÓN (SUELO): Buscar por grupo evaluando TODAS las estatuas del mapa
+			# Detectar la estatua
+			elif objeto.has_method("ser_mirada"):
+				if estatua_referencia != objeto:
+					estatua_referencia = objeto
+				mirando_a_estatua = true
+				objeto.ser_mirada(true)
+
+	# Si la mirada deja de enfocar a la estatua previa, la liberamos
+	if not mirando_a_estatua and is_instance_valid(estatua_referencia):
+		if estatua_referencia.has_method("ser_mirada"):
+			estatua_referencia.ser_mirada(false)
+		estatua_referencia = null
+
+	# =========================================================
+	# 2. CONTROL DEL EVENTO Y SANIDAD
+	# =========================================================
+	# Si el papel no ha sido tomado, no se procesa el daño de sanidad
+	if not evento_activado:
+		return
+
+	# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
 	var lista_estatuas = get_tree().get_nodes_in_group("estatua")
 	
 	for nodo_estatua in lista_estatuas:
@@ -181,14 +214,12 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 			pos_estatua_plana.y = 0.0
 			pos_jugador_plana.y = 0.0
 			
-			# Si AL MENOS UNA de las estatuas está a menos de la distancia de peligro
 			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
 				estatua_esta_cerca = true
-				break # Rompemos el bucle porque ya encontramos una cerca, no hace falta seguir buscando
+				break
 
-	# 3. MÁQUINA DE CONSECUENCIAS (Drenaje físico directo)
+	# MÁQUINA DE CONSECUENCIAS (Drenaje físico)
 	if estatua_esta_cerca:
-		# Situación A: Está encima tuyo (Espalda o frente) -> Drenaje masivo e inmediato del filtro
 		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
 		current_sanity = clamp(current_sanity, 0.0, max_sanity)
 		actualizar_efectos_sanidad()
@@ -197,26 +228,112 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 			morir()
 			
 	elif mirando_a_estatua:
-		# Situación B: Solo la mirás de lejos -> Drenaje estándar
-		perder_sanity_normal(delta)
+		perder_sanidad(delta)
 		
 	else:
-		# Situación C: No está cerca ni la mirás -> El filtro se aclara limpio
-		if estatua_referencia and is_instance_valid(estatua_referencia):
-			if estatua_referencia.has_method("ser_mirada"):
-				estatua_referencia.ser_mirada(false)
+		recuperar_sanidad(delta)
 		
-		estatua_referencia = null
+	# =========================================================
+	# CONTROL DE EVENTO Y SANIDAD
+	# =========================================================
+	if not evento_activado:
+		return
+
+# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
+
+	for nodo_estatua in lista_estatuas:
+		if is_instance_valid(nodo_estatua):
+			var pos_estatua_plana = nodo_estatua.global_position
+			var pos_jugador_plana = global_position
+			pos_estatua_plana.y = 0.0
+			pos_jugador_plana.y = 0.0
+			
+			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
+				estatua_esta_cerca = true
+				break
+
+	# MÁQUINA DE CONSECUENCIAS
+	if estatua_esta_cerca:
+		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
+		current_sanity = clamp(current_sanity, 0.0, max_sanity)
+		actualizar_efectos_sanidad()
+		
+		if current_sanity <= 0 and not esta_muerto:
+			morir()
+			
+	elif mirando_a_estatua:
+		perder_sanidad(delta)
+		
+	else:
 		recuperar_sanidad(delta)
 
+	# =========================================================
+	# 1. DETECCIÓN DEL PAPEL E INTERACCIÓN (SIEMPRE ACTIVO)
+	# =========================================================
+	if raycast_vision and raycast_vision.is_colliding():
+		var objeto = raycast_vision.get_collider()
+		
+		# Si miras al objeto interactuable (papel)
+		if objeto and objeto.has_method("interactuar"):
+			print(">>> [RAYCAST] ¡Estás mirando al papel interactivo! <<<")
+			
 
-# Función auxiliar para mantener tu ritmo original de daño al mirarla de lejos
-func perder_sanity_normal(delta: float) -> void:
-	current_sanity -= sanity_drain_rate * delta
-	current_sanity = clamp(current_sanity, 0.0, max_sanity)
-	actualizar_efectos_sanidad()
-	if current_sanity <= 0 and not esta_muerto:
-		morir()
+	if Input.is_action_just_pressed("interactuar"):
+		print(">>> [TECLA PRESIONADA] Se interactuó con el papel <<<")
+		objeto.interactuar()
+		evento_activado = true # Se activa la sanidad en el player
+
+	for estatua in lista_estatuas:
+		if is_instance_valid(estatua) and estatua.has_method("activar_estatua"):
+			estatua.activar_estatua()
+			print(">>> ¡Estatua activada correctamente desde el Player! <<<")
+
+		# Si el objeto es la estatua (para detenerla al mirarla)
+		elif objeto and objeto.has_method("ser_mirada"):
+			if estatua_referencia != objeto:
+				estatua_referencia = objeto
+			mirando_a_estatua = true
+			objeto.ser_mirada(true)
+
+	# Si la mirada deja de enfocar a la estatua previa, la liberamos
+	if not mirando_a_estatua and estatua_referencia and is_instance_valid(estatua_referencia):
+		if estatua_referencia.has_method("ser_mirada"):
+			estatua_referencia.ser_mirada(false)
+		estatua_referencia = null
+
+	# =========================================================
+	# 2. CONTROL DEL EVENTO (SANIDAD Y DISTANCIA)
+	# =========================================================
+	if not evento_activado:
+		return
+
+	# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
+	
+	for nodo_estatua in lista_estatuas:
+		if is_instance_valid(nodo_estatua):
+			var pos_estatua_plana = nodo_estatua.global_position
+			var pos_jugador_plana = global_position
+			pos_estatua_plana.y = 0.0
+			pos_jugador_plana.y = 0.0
+			
+			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
+				estatua_esta_cerca = true
+				break
+
+	# MÁQUINA DE CONSECUENCIAS
+	if estatua_esta_cerca:
+		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
+		current_sanity = clamp(current_sanity, 0.0, max_sanity)
+		actualizar_efectos_sanidad()
+		
+		if current_sanity <= 0 and not esta_muerto:
+			morir()
+			
+	elif mirando_a_estatua:
+		perder_sanidad(delta)
+		
+	else:
+		recuperar_sanidad(delta)
 
 
 # =========================================================

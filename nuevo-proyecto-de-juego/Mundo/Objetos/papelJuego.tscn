@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cnumluuvkaiih"]
+
+[ext_resource type="Script" uid="uid://4sm7onh34sb2" path="res://Mundo/Objetos/papel_juego.gd" id="1_jtllo"]
+[ext_resource type="PackedScene" uid="uid://jtdfssv0tav" path="res://Mundo/Objetos/papel.glb" id="1_mfggi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(0.2390747, 0.25634766, 0.0703125)
+
+[node name="PapelInteractivo" type="Area3D" unique_id=1453846938]
+collision_layer = 2
+script = ExtResource("1_jtllo")
+
+[node name="papel" parent="." unique_id=1983158373 instance=ExtResource("1_mfggi")]
+transform = Transform3D(0.99687856, 0, 0.07895053, 0, 1, 0, -0.07895053, 0, 0.99687856, -0.44272268, 0.36419123, -1.2001508)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1077484806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44351602, 0.3920738, -1.1794213)
+shape = SubResource("BoxShape3D_13qdw")
