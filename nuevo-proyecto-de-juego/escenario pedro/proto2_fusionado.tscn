@@ -414,8 +414,20 @@ sky_material = SubResource("PanoramaSkyMaterial_b1lj4")
 [sub_resource type="Environment" id="Environment_xrivr"]
 background_mode = 2
 sky = SubResource("Sky_13qdw")
+ambient_light_color = Color(1, 0.9490196, 0.8, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.02
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.15
+fog_sun_scatter = 0.01
 
 [node name="Base" type="Node3D" unique_id=1565331911]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1647743530]
+stream = ExtResource("29_8j5m1")
+volume_db = -5.474
+autoplay = true
+mix_target = 1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=929541830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2967415, 0.18707466, 0.89310455)
@@ -786,7 +798,7 @@ size = Vector3(8.060755, 9.324, 1.89)
 transform = Transform3D(1.8775467e-08, 0, -0.18, 0, 0.18, 0, 0.18, 0, 1.8775467e-08, -34.05545, -6.161329, -82.36101)
 
 [node name="Table by CMHT Oculus - 0WwhayzV52T3" parent="CSGCombiner3D/ParedIzq/frente2" unique_id=1079907639 instance=ExtResource("8_k2521")]
-transform = Transform3D(1.8775467e-08, 0, -0.18, 0, 0.18, 0, 0.18, 0, 1.8775467e-08, -34.05545, -6.1607413, -91.79038)
+transform = Transform3D(1.8775467e-08, 0, -0.18, 0, 0.18, 0, 0.18, 0, 1.8775467e-08, -33.95411, -6.0633597, -91.92377)
 
 [node name="Table by CMHT Oculus - 0WwhayzV52T4" parent="CSGCombiner3D/ParedIzq/frente2" unique_id=1354098910 instance=ExtResource("8_k2521")]
 transform = Transform3D(1.8775467e-08, 0, -0.18, 0, 0.18, 0, 0.18, 0, 1.8775467e-08, -52.419373, -6.1903386, -76.080124)
@@ -1386,6 +1398,7 @@ size = Vector3(1, 7.0313873, 1.2640686)
 environment = SubResource("Environment_xrivr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1206423055]
+transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
 transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -103.32477, 3.0891294, 54.274902)
@@ -1405,15 +1418,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="ESTATUA_rig,modelado" parent="." unique_id=1886735409 instance=ExtResource("11_y4ujb")]
-transform = Transform3D(-1.4994997, 0, 0.038741946, 0, 1.5, 0, -0.038741946, 0, -1.4994997, -90.228165, 1.9147973, -16.72007)
-
-[node name="ESTATUA_rig,modelado2" parent="." unique_id=8013932 instance=ExtResource("11_y4ujb")]
-transform = Transform3D(-0.99927425, 0, 0.038091414, 0, 1, 0, -0.038091414, 0, -0.99927425, 38.354557, -0.38339567, -30.918453)
+transform = Transform3D(-0.08927243, 0, -1.3854644, 0, 1.5, 0, 1.4906185, 0, -0.0829748, -121.81572, 1.9147973, -84.15655)
 
 [node name="Doors_RoundArch" parent="." unique_id=2075956514 instance=ExtResource("11_1lt30")]
 transform = Transform3D(-0.039707303, 0, 10.166709, 0, 4.8127623, 0, -5.730507, 0, -0.07044625, -9.764879, -0.7993958, -49.320683)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1647743530]
-stream = ExtResource("29_8j5m1")
-volume_db = -5.474
-autoplay = true
+[node name="Table by Zoe XR - 6K7cCtQAkY0" parent="." unique_id=1341664597 instance=ExtResource("15_3vido")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.018904, 3.1662354, -91.73789)
+
+[node name="EstatuaNueva" parent="." unique_id=329145129 instance=ExtResource("11_y4ujb")]
+transform = Transform3D(-0.99927425, 0, 0.038091414, 0, 1, 0, -0.038091414, 0, -0.99927425, 16.747297, 1.6677423, -78.36803)

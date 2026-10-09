@@ -4,7 +4,7 @@ extends CharacterBody3D
 # MOVIMIENTO
 # =========================================================
 
-var correr = 35.0
+var correr = 22.0
 var JUMP_VELOCITY = 5.2
 var caminar = 16.6
 var velocidad_actual = 10.6
@@ -152,28 +152,72 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 # =========================================================
-# COMPROBAR VISIÓN DE LA ESTATUA + SANIDAD
+# COMPROBAR VISIÓN DE LA ESTATUA + SANIDAD (REVISADO)
 # =========================================================
+
+@export var distancia_peligro_inmediato: float = 3.5
+@export var multiplicador_drenaje_proximidad: float = 6.0
 
 func comprobar_vision_y_sanidad(delta: float) -> void:
 	var mirando_a_estatua := false
+	var estatua_esta_cerca := false
 
+	# 1. PASO DE FRENTE: Verificar si el RayCast la cruza
 	if raycast_vision.is_colliding():
 		var objeto = raycast_vision.get_collider()
-
 		if objeto and objeto.has_method("ser_mirada"):
-			estatua_referencia = objeto
+			if estatua_referencia != objeto:
+				estatua_referencia = objeto
 			mirando_a_estatua = true
 			objeto.ser_mirada(true)
-			perder_sanidad(delta)
 
-	if not mirando_a_estatua:
+	# 2. PASO DE POSICIÓN (SUELO): Buscar por grupo evaluando TODAS las estatuas del mapa
+	var lista_estatuas = get_tree().get_nodes_in_group("estatua")
+	
+	for nodo_estatua in lista_estatuas:
+		if is_instance_valid(nodo_estatua):
+			var pos_estatua_plana = nodo_estatua.global_position
+			var pos_jugador_plana = global_position
+			pos_estatua_plana.y = 0.0
+			pos_jugador_plana.y = 0.0
+			
+			# Si AL MENOS UNA de las estatuas está a menos de la distancia de peligro
+			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
+				estatua_esta_cerca = true
+				break # Rompemos el bucle porque ya encontramos una cerca, no hace falta seguir buscando
+
+	# 3. MÁQUINA DE CONSECUENCIAS (Drenaje físico directo)
+	if estatua_esta_cerca:
+		# Situación A: Está encima tuyo (Espalda o frente) -> Drenaje masivo e inmediato del filtro
+		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
+		current_sanity = clamp(current_sanity, 0.0, max_sanity)
+		actualizar_efectos_sanidad()
+		
+		if current_sanity <= 0 and not esta_muerto:
+			morir()
+			
+	elif mirando_a_estatua:
+		# Situación B: Solo la mirás de lejos -> Drenaje estándar
+		perder_sanity_normal(delta)
+		
+	else:
+		# Situación C: No está cerca ni la mirás -> El filtro se aclara limpio
 		if estatua_referencia and is_instance_valid(estatua_referencia):
 			if estatua_referencia.has_method("ser_mirada"):
 				estatua_referencia.ser_mirada(false)
-
+		
 		estatua_referencia = null
 		recuperar_sanidad(delta)
+
+
+# Función auxiliar para mantener tu ritmo original de daño al mirarla de lejos
+func perder_sanity_normal(delta: float) -> void:
+	current_sanity -= sanity_drain_rate * delta
+	current_sanity = clamp(current_sanity, 0.0, max_sanity)
+	actualizar_efectos_sanidad()
+	if current_sanity <= 0 and not esta_muerto:
+		morir()
+
 
 # =========================================================
 # ACTUALIZAR SANIDAD (EFECTOS VISUALES Y AUDITIVOS)

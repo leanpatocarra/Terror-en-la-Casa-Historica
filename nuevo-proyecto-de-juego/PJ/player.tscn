@@ -18,8 +18,8 @@ transform = Transform3D(0.9999526, -0.0010399859, 0.009844447, -0.0016422437, 0.
 script = ExtResource("2_onrkg")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=425251291]
-transform = Transform3D(0.99799037, -0.009358943, -0.06264711, -0.0020419452, 0.9837542, -0.17949373, 0.06330939, 0.1792602, 0.9817608, -0.011282798, 0.22473478, -0.4664681)
-fov = 70.74079
+transform = Transform3D(0.99799037, -0.009358943, -0.06264711, -0.0020419452, 0.9837542, -0.17949373, 0.06330939, 0.1792602, 0.9817608, 0.067428894, 0.29543388, -0.251511)
+fov = 103.23971
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1525537343]
 transform = Transform3D(1, 0, 3.7252903e-09, 0, 1.0000001, -7.450581e-09, -3.7252903e-09, -7.450581e-09, 1, -0.0051276237, -0.000875473, 0.009596601)
@@ -30,7 +30,7 @@ target_position = Vector3(0, 0, -100)
 [node name="Body" parent="Modelo" unique_id=2015805665 instance=ExtResource("2_i3pqv")]
 transform = Transform3D(-0.9997789, -0.020049866, -0.006413332, -0.020066358, 0.99979603, 0.002516206, 0.006361639, 0.0026443433, -0.99997675, -0.077467196, -0.8482558, -0.0012970192)
 
-[node name="Skeleton3D" parent="Modelo/Body/Armature" parent_id_path=PackedInt32Array(2015805665, 1010546840) index="0" unique_id=333459544]
+[node name="Skeleton3D" parent="Modelo/Body/Armature" parent_id_path=PackedInt32Array(2015805665, 671240349) index="0" unique_id=513889395]
 bones/1/position = Vector3(-0.018583521, 0.049801953, 0.8706406)
 bones/1/rotation = Quaternion(0.78994673, 0.026709713, -0.0059830854, 0.61256415)
 bones/3/rotation = Quaternion(-0.004838541, 0.0105369035, 0.012818994, 0.9998507)
@@ -88,9 +88,12 @@ bones/61/rotation = Quaternion(0.08039376, 0.0018645609, -0.00016000784, 0.99676
 bones/62/rotation = Quaternion(-0.5934976, 0.014719891, -0.015945997, 0.8045432)
 bones/63/rotation = Quaternion(0.0035849558, 0.91576385, -0.4017009, -6.931252e-06)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modelo/Body/Armature" parent_id_path=PackedInt32Array(2015805665, 1010546840) index="1" unique_id=937624425]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Modelo/Body/Armature" parent_id_path=PackedInt32Array(2015805665, 671240349) index="1" unique_id=937624425]
 transform = Transform3D(0.9999996, 6.5774657e-09, 2.7939677e-09, -3.110472e-10, 0.9994699, -0.032516733, -1.9557774e-08, 0.03251674, 0.9994708, 0.13902315, 1.6974938, 0.64033055)
 bone_name = "Head"
 bone_idx = 6
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=159634452]
+light_color = Color(1, 0.9490196, 0.8, 1)
 
 [editable path="Modelo/Body"]

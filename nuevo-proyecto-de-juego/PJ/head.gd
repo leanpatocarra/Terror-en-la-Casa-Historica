@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
 		# ROTACIÓN HORIZONTAL — EJE Y
 		rotacion_horizontal += -event.relative.x * sensibilidad
 		get_parent().rotation.y = deg_to_rad(rotacion_horizontal)
-
+ 
 		# ROTACIÓN VERTICAL — EJE X
 		rotacion_vertical += -event.relative.y * sensibilidad
 		rotacion_vertical = clampf(rotacion_vertical,-90.0,90.0)
