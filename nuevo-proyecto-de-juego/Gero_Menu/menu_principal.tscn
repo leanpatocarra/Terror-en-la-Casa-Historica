@@ -35,7 +35,7 @@ theme_override_constants/separation = 20
 [node name="LabelTitulo" type="Label" parent="Botonera" unique_id=2006241324]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "El museo"
+text = "LA MALDICIÓN DEL MUSEO"
 
 [node name="BtnJugar" type="Button" parent="Botonera" unique_id=1533896436]
 layout_mode = 2

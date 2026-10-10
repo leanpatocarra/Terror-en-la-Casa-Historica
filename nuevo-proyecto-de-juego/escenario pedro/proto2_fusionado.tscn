@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://tqptsno3bdt8" path="res://Mundo/piso/textures/puerta.tscn" id="29_htw5t"]
 [ext_resource type="PackedScene" uid="uid://cnumluuvkaiih" path="res://Mundo/Objetos/papelJuego.tscn" id="33_5fy6y"]
 [ext_resource type="PackedScene" uid="uid://c32esxynpmy8w" path="res://Gero_Menu/menu_pausa.tscn" id="35_0dlxw"]
+[ext_resource type="PackedScene" uid="uid://dy0rav4qhsexh" path="res://Gero_Menu/label.tscn" id="36_ebabg"]
 [ext_resource type="PackedScene" uid="uid://jtk5hgwwo3e" path="res://Mundo/piso/objetos/mesa2.tscn" id="36_ypd7n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ef8rt"]
@@ -1681,3 +1682,5 @@ transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 17.155005, -0.09254527, -7
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=761471835]
 
 [node name="MenuPausa" parent="CanvasLayer" unique_id=1910793488 instance=ExtResource("35_0dlxw")]
+
+[node name="Label" parent="." unique_id=547451351 instance=ExtResource("36_ebabg")]

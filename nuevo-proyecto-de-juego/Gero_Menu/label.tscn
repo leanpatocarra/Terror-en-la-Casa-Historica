@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dy0rav4qhsexh"]
+
+[ext_resource type="Script" uid="uid://70qeu5br628f" path="res://Gero_Menu/label.gd" id="1_valqg"]
+
+[node name="Label" type="Label" unique_id=547451351]
+offset_left = 9.0
+offset_top = 408.0
+offset_right = 400.0
+offset_bottom = 643.0
+theme_override_font_sizes/font_size = 22
+text = "Controles
+Moviemiento: WASD
+Saltar: Espacio
+Correr: Shift
+Interactuar: E
+Recoger objeto: F
+Inventario: Tab"
+vertical_alignment = 1
+script = ExtResource("1_valqg")
+
+[node name="Timer" type="Timer" parent="." unique_id=514566549]
+wait_time = 15.0
+autostart = true
