@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ykabv2fg6we3" path="res://Gero_Menu/game_over.gd" id="1_y26ei"]
 [ext_resource type="AudioStream" uid="uid://dwu1g5icd8lyj" path="res://Sonidos_Ignacio/menu/SonidodeAgarre_IniciodeBotones.mp3" id="2_bpgxd"]
 [ext_resource type="AudioStream" uid="uid://cifynyhm7detm" path="res://Sonidos_Ignacio/menu/SalidoMenu.mp3" id="3_krjex"]
+[ext_resource type="AudioStream" uid="uid://caikmsfrlssct" path="res://Sonidos_Ignacio/ambiente/SonidodeTerroBocinas.mp3" id="4_ng6me"]
 
 [node name="GameOver" type="Control" unique_id=1328535567]
 layout_mode = 3
@@ -62,3 +63,7 @@ text = "Volver al menu"
 [node name="AudioMenu" type="AudioStreamPlayer" parent="Botonera/BtnMenu" unique_id=1425562769]
 stream = ExtResource("3_krjex")
 volume_db = 24.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=456061906]
+stream = ExtResource("4_ng6me")
+autoplay = true

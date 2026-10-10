@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://buveai8ex1xn1" path="res://Mundo/piso/objetos/Wall painting by jeremy - 62zn39CRkbG.glb" id="1_xxf00"]
 [ext_resource type="Script" uid="uid://da5csxjightbq" path="res://Mundo/piso/objetos/cuadro_1.gd" id="2_sl45r"]
 [ext_resource type="Script" uid="uid://bnwl0rpb0mah2" path="res://Mundo/piso/objetos/static_body_decuadro.gd" id="3_hjh4w"]
+[ext_resource type="AudioStream" uid="uid://dwu1g5icd8lyj" path="res://Sonidos_Ignacio/menu/SonidodeAgarre_IniciodeBotones.mp3" id="4_iii0v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
 
@@ -21,3 +22,7 @@ script = ExtResource("3_hjh4w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1737555491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09100342, -1.5761108, -0.1822815)
 shape = SubResource("BoxShape3D_xrivr")
+
+[node name="AudioCuadro" type="AudioStreamPlayer3D" parent="StaticBody3D" index="1" unique_id=826730539]
+stream = ExtResource("4_iii0v")
+volume_db = 80.0

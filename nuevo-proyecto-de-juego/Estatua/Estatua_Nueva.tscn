@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cgxweia456bue" path="res://Estatua/ESTATUA_ESTATUACOLOR.png" id="1_1o1ph"]
 [ext_resource type="Script" uid="uid://cyapoyt3kdm17" path="res://Estatua/estatua_nueva.gd" id="1_xa3w5"]
 [ext_resource type="AudioStream" uid="uid://crdf8uv12jqfp" path="res://Sonidos_Ignacio/etuatuta/Pasos.wav" id="3_73ku2"]
-[ext_resource type="AudioStream" uid="uid://cnsvafnbovr2h" path="res://Sonidos_Ignacio/etuatuta/VozEstatua.wav" id="4_tyqtm"]
+[ext_resource type="AudioStream" uid="uid://06plt76mglvg" path="res://Sonidos_Ignacio/ambiente/794238__vrymaa__ghost-vocals-ghost-04.wav" id="4_73ku2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y67kc"]
 resource_name = "Material.002"
@@ -17824,11 +17824,11 @@ shape = SubResource("WorldBoundaryShape3D_k4awv")
 
 [node name="AudioPasos" type="AudioStreamPlayer3D" parent="." unique_id=608865132]
 stream = ExtResource("3_73ku2")
-volume_db = 14.975
+volume_db = 4.142
 
 [node name="AudioVoz" type="AudioStreamPlayer3D" parent="." unique_id=753255288]
-stream = ExtResource("4_tyqtm")
+stream = ExtResource("4_73ku2")
 attenuation_model = 1
-volume_db = 80.0
+volume_db = 32.335
 unit_size = 44.86
 max_distance = 4096.0

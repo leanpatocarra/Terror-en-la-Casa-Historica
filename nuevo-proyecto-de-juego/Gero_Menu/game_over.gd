@@ -8,6 +8,9 @@ extends Control
 @onready var audio_menu: AudioStreamPlayer = $Botonera/BtnMenu/AudioMenu
 
 func _ready() -> void:
+	# Forzamos que la pantalla de Game Over procese inputs por si acaso
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	# Nos aseguramos de que el puntero del mouse sea visible al perder
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
@@ -25,7 +28,10 @@ func _on_reintentar_pressed() -> void:
 		audio_reintentar.play()
 		# Detiene la ejecución hasta que el sonido termine de sonar
 		await audio_reintentar.finished
-		
+	
+	# REPARACIÓN: Despausamos el motor antes de reiniciar el nivel
+	get_tree().paused = false
+	
 	# Reinicia tu nivel principal
 	get_tree().change_scene_to_file("res://escenario pedro/proto2_fusionado.tscn")
 
@@ -35,5 +41,8 @@ func _on_menu_pressed() -> void:
 		# Detiene la ejecución hasta que el sonido termine de sonar
 		await audio_menu.finished
 		
+	# REPARACIÓN: Despausamos el motor antes de saltar al menú principal
+	get_tree().paused = false
+	
 	# Cambia al menú principal usando tu ruta real que se ve en el árbol de archivos
 	get_tree().change_scene_to_file("res://Gero_Menu/menu_principal.tscn")

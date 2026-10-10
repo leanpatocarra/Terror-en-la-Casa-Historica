@@ -55,5 +55,5 @@ volume_db = 24.0
 
 [node name="AudioAmbiente" type="AudioStreamPlayer" parent="." unique_id=1582914573]
 stream = ExtResource("4_kag8i")
-volume_db = -3.625
+volume_db = 6.875
 autoplay = true
