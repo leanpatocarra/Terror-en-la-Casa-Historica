@@ -9,14 +9,6 @@
 [node name="Player" type="CharacterBody3D" unique_id=592294200]
 transform = Transform3D(0.9999469, 0.010026589, 0.00236865, -0.010029666, 0.99994886, 0.0012902145, -0.0023555872, -0.0013139122, 0.99999636, 0.07400155, 0.96483564, -0.17450428)
 script = ExtResource("1_4flbx")
-max_stamina = null
-stamina_drain_rate = null
-stamina_recover_rate = null
-max_sanity = null
-sanity_drain_rate = null
-sanity_recover_rate = null
-distancia_peligro_inmediato = null
-multiplicador_drenaje_proximidad = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1856018330]
 shape = SubResource("CapsuleShape3D_onrkg")

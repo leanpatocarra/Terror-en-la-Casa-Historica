@@ -1,17 +1,18 @@
 # cuadro_1.gd
 extends Node3D
 
-# Estas variables aparecerán en el Inspector de Godot para que las rellenes a mano
+# Estas variables las rellenas desde el Inspector de Godot
 @export var nombre_cuadro: String = "Cuadro Colonial"
 @export var codigo_morse: String = ".-"
 
 func interactuar() -> void:
 	if codigo_morse != "":
 		if get_node_or_null("/root/GlobalLog"):
-			# Llamamos a tu función original del Autoload
+			# Registramos la pista en tu script de Autoload original
 			GlobalLog.agregar_pista(nombre_cuadro, codigo_morse)
-			print("[CÓDIGO REGISTRADO]: ", nombre_cuadro, " -> ", codigo_morse)
-
-# LÍNEA AGREGADA: Si el RayCast toca al hijo StaticBody3D, este llamará al padre automáticamente
-func redirigir_interaccion() -> void:
-	interactuar()
+			
+			# AGREGADO: Mensaje de confirmación detallado en la consola
+			print(">>> [LOG DE PISTAS] ¡El jugador tomó el código con éxito! <<<")
+			print("    • Objeto Examinado: ", nombre_cuadro)
+			print("    • Código Morse Guardado: ", codigo_morse)
+			print("-----------------------------------------------------")

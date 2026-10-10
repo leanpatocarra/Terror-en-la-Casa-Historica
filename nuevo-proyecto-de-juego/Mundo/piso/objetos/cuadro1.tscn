@@ -14,6 +14,7 @@ script = ExtResource("2_sl45r")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1563550632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.3213215, 0.45091867)
+collision_layer = 6
 physics_material_override = SubResource("PhysicsMaterial_xrivr")
 script = ExtResource("3_hjh4w")
 

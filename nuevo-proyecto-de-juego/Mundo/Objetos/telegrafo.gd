@@ -2,7 +2,7 @@
 extends Node3D
 
 # Escribe aquí en el Inspector los códigos que el jugador debe haber juntado para ganar
-@export var codigos_necesarios: Array[String] = [".-", "-...", "-.-."]
+@export var codigos_necesarios: Array[String] = [".-", ".--", ".---", ".----"]
 
 func interactuar() -> void:
 	print("--- Evaluando códigos en el Telégrafo ---")

@@ -7,7 +7,7 @@
 size = Vector3(2.0594482, 1.8751221, 2.4230957)
 
 [node name="Node3D" type="StaticBody3D" unique_id=1105136810]
-collision_layer = 0
+collision_layer = 6
 
 [node name="Sketchfab_Scene" parent="." unique_id=46774542 instance=ExtResource("1_qjn7t")]
 transform = Transform3D(0.4, 0, 0, 0, 0.278, 0, 0, 0, 0.303, -7.5865445, 0, -9.742305)

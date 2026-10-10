@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bvl4s3i2hgxcu" path="res://Sonidos_Ignacio/ambiente/SonidoAmbientalSuspenso.mp3" id="29_8j5m1"]
 [ext_resource type="PackedScene" uid="uid://tqptsno3bdt8" path="res://Mundo/piso/textures/puerta.tscn" id="29_htw5t"]
 [ext_resource type="PackedScene" uid="uid://cnumluuvkaiih" path="res://Mundo/Objetos/papelJuego.tscn" id="33_5fy6y"]
+[ext_resource type="Script" uid="uid://cp6usr1alqgsj" path="res://escenario pedro/world_environment.gd" id="33_24mmi"]
 [ext_resource type="PackedScene" uid="uid://c32esxynpmy8w" path="res://Gero_Menu/menu_pausa.tscn" id="35_0dlxw"]
 [ext_resource type="PackedScene" uid="uid://dy0rav4qhsexh" path="res://Gero_Menu/label.tscn" id="36_ebabg"]
 [ext_resource type="PackedScene" uid="uid://jtk5hgwwo3e" path="res://Mundo/piso/objetos/mesa2.tscn" id="36_ypd7n"]
@@ -958,6 +959,7 @@ script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG" parent="CSGCombiner3D/ParedIzq/frente5" unique_id=1315511795 instance=ExtResource("25_ebabg")]
 transform = Transform3D(-2.1855673e-08, 0, -0.4999997, 0, 0.5, 0, 0.4999997, 0, -2.1855673e-08, -19.554562, -0.40184784, 37.610386)
+codigo_morse = ".--"
 
 [node name="PisoMuestra2" type="CSGBox3D" parent="CSGCombiner3D/ParedIzq/frente5" unique_id=949634013]
 transform = Transform3D(-0.99999434, 0, -6.05968e-08, 0, 1, 0, 6.05968e-08, 0, -0.99999434, 13.964148, -5.4380217, -42.342236)
@@ -1060,6 +1062,7 @@ transform = Transform3D(-0.39999303, 0.0022909807, 0.00055765384, 0.0022914035, 
 
 [node name="Wall painting by jeremy - 62zn39CRkbG" parent="CSGCombiner3D/Medianera" unique_id=577267172 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, -81.960365, -1.048029, -0.6701107)
+script = null
 
 [node name="Fondo1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2038871540]
 transform = Transform3D(-4.371138e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.371138e-08, -23.820217, 6.2099977, -16.694996)
@@ -1093,33 +1096,43 @@ size = Vector3(2.2680001, 13.079682, 12.802813)
 
 [node name="Wall painting by jeremy - 62zn39CRkbG4" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1802908462 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32995906, 0, 0.0051834113, 0, 0.33, 0, -0.0051834113, 0, 0.32995906, -50, 0.5, -0.653)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=842524315 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.3299998, 0, 2.6645353e-15, 0, 0.33, 0, -2.6645353e-15, 0, 0.3299998, -55.526, 0.5, -0.74)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG2" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=550771614 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.3299997, 0, 3.5527137e-15, 0, 0.33, 0, -3.5527137e-15, 0, 0.3299997, -61.060875, 0.5, -0.70899963)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG3" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1315781683 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32999966, 0, 3.5527137e-15, 0, 0.33, 0, -3.5527137e-15, 0, 0.32999966, -66.871346, 0.3863945, -0.61883545)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG5" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=512481194 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32999977, 0, 3.5527137e-15, 0, 0.33, 0, -3.5527137e-15, 0, 0.32999977, -72.776, 0.5, -0.699)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG6" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=761198635 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.3299999, 0, 1.7763568e-15, 0, 0.33, 0, -1.7763568e-15, 0, 0.3299999, -50.097, -5.5, -0.659)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG7" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1704608038 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.3299998, 0, 2.6645353e-15, 0, 0.33, 0, -2.6645353e-15, 0, 0.3299998, -55.67, -5.5, -0.62)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG8" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1308862256 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32999983, 0, 2.6645353e-15, 0, 0.33, 0, -2.6645353e-15, 0, 0.32999983, -61.189, -5.5, -0.675)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG9" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=300772848 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32999983, 0, 2.6645353e-15, 0, 0.33, 0, -2.6645353e-15, 0, 0.32999983, -66.87, -5.5, -0.681)
+script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG10" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1131482856 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32999972, 0, 3.5527137e-15, 0, 0.33, 0, -3.5527137e-15, 0, 0.32999972, -72.832, -5.5, -0.637)
+script = null
 
 [node name="ventana2" type="CSGBox3D" parent="CSGCombiner3D/Fondo1/fondo12" unique_id=1289958691]
 transform = Transform3D(0.999455, 0, -0.033002365, 0, 1, 0, 0.033002365, 0, 0.999455, 21.558044, -1.0733995, -0.0039978027)
@@ -1194,7 +1207,8 @@ transform = Transform3D(-1.4424739e-08, 0, -0.32999972, 0, 0.33, 0, 0.32999972, 
 script = null
 
 [node name="Wall painting by jeremy - 62zn39CRkbG7" parent="CSGCombiner3D/Fondo1/fondo14" unique_id=1272945065 instance=ExtResource("25_ebabg")]
-transform = Transform3D(-1.4424735e-08, 0, -0.32999966, 0, 0.33, 0, 0.32999966, 0, -1.4424735e-08, -19.379997, -5.682799, 25.838978)
+transform = Transform3D(-1.4424735e-08, 0, -0.32999966, 0, 0.33, 0, 0.32999966, 0, -1.4424735e-08, -19.453268, -5.682799, 25.838978)
+codigo_morse = ".---"
 
 [node name="Wall painting by jeremy - 62zn39CRkbG8" parent="CSGCombiner3D/Fondo1/fondo14" unique_id=127666111 instance=ExtResource("25_ebabg")]
 transform = Transform3D(-1.4424732e-08, 0, -0.3299996, 0, 0.33, 0, 0.3299996, 0, -1.4424732e-08, -19.370556, -5.7231073, 20.055744)
@@ -1476,6 +1490,7 @@ material = SubResource("StandardMaterial3D_bpxvl")
 
 [node name="Wall painting by jeremy - 62zn39CRkbG" parent="CSGCombiner3D/TechoFondo2" unique_id=841900140 instance=ExtResource("25_ebabg")]
 transform = Transform3D(0.32996973, 0.0013297832, 0.00426839, -0.0013937936, 0.3299599, 0.004951334, -0.0042479225, -0.0049689235, 0.32993513, -59.285046, -0.7185211, -0.4992218)
+codigo_morse = ".----"
 
 [node name="viga" type="CSGBox3D" parent="CSGCombiner3D" unique_id=723830142]
 transform = Transform3D(-4.371139e-08, 1, 0, -0.99999994, -4.371139e-08, 0, 0, 0, 0.99999994, -104.84161, 11.317209, -76.72521)
@@ -1670,20 +1685,13 @@ size = Vector3(1, 7.0313873, 1.2640686)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2021670686]
 environment = SubResource("Environment_xrivr")
+script = ExtResource("33_24mmi")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1206423055]
 transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -15.102509, 3.6776383, -56.783493)
-max_stamina = 100.0
-stamina_drain_rate = 25.0
-stamina_recover_rate = 15.0
-max_sanity = 100.0
-sanity_drain_rate = 15.0
-sanity_recover_rate = 5.0
-distancia_peligro_inmediato = 3.5
-multiplicador_drenaje_proximidad = 6.0
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -3.7886543, 3.564158, -56.810146)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=316596278]
 

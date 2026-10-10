@@ -4,7 +4,7 @@ extends CharacterBody3D
 # MOVIMIENTO
 # =========================================================
 
-var correr = 22.0
+var correr = 80.0
 var JUMP_VELOCITY = 5.2
 var caminar = 16.6
 var velocidad_actual = 10.6
@@ -146,38 +146,44 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 	var estatua_esta_cerca := false
 	var lista_estatuas = get_tree().get_nodes_in_group("estatua")
 
-	# -----------------------------------------------------
+# -----------------------------------------------------
 	# 1. DETECCIÓN DEL RAYCAST (INTERACCIONES)
 	# -----------------------------------------------------
 	if raycast_vision and raycast_vision.is_colliding():
 		var objeto = raycast_vision.get_collider()
 		
 		if is_instance_valid(objeto):
-			# Interacción con el Papel (Tu código original intacto)
+			# Interacción con el Papel u objetos interactuables directos
 			if objeto.has_method("interactuar"):
-				print(">>> [RAYCAST] ¡Estás mirando al papel interactivo! <<<")
+				print(">>> [RAYCAST] ¡Estás mirando al papel o cuadro interactivo! <<<")
+				
+				# AQUÍ HACES QUE SE PONGA EN ROJO:
+				# Si quieres que use un sistema visual como el de la hoja, 
+				# el cuadro debe reaccionar aquí.
 				
 				if Input.is_action_just_pressed("interactuar"):
-					print(">>> [TECLA PRESIONADA] Se interactuó con el papel <<<")
+					print(">>> [TECLA PRESIONADA] Se interactuó con el objeto <<<")
 					objeto.interactuar()
-					evento_activado = true 
 					
-					for estatua in lista_estatuas:
-						if is_instance_valid(estatua) and estatua.has_method("activar_estatua"):
-							estatua.activar_estatua()
-							print(">>> ¡Estatua activada desde el Player! <<<")
+					# Si era un papel, activa la estatua
+					if objeto.has_signal("documento_recogido") or "Papel" in objeto.name:
+						evento_activado = true 
+						for estatua in lista_estatuas:
+							if is_instance_valid(estatua) and estatua.has_method("activar_estatua"):
+								estatua.activar_estatua()
 
-			# LÍNEAS AGREGADAS: Soporte para cuadros, telégrafo u objetos hijos que tengan la función interactuar
+			# LÍNEA CLAVE PARA LOS CUADROS EN ESCENAS HEREDADAS:
+			# Si el RayCast toca al hijo StaticBody3D, también debe considerarse interacción activa
 			elif objeto.get_parent() and objeto.get_parent().has_method("interactuar"):
+				# Activamos el resaltado visual simulado o consola
+				print(">>> [RAYCAST] Enfocando colisión hija de un interactuable (Cuadro) <<<")
+				
 				if Input.is_action_just_pressed("interactuar"):
-					print(">>> [TECLA PRESIONADA] Interacción con objeto hijo detectada <<<")
 					objeto.get_parent().interactuar()
 
-			# Interacción con la Estatua (Mirarla para detenerla - Tu código original intacto)
+			# Interacción con la Estatua (Mirarla para detenerla)
 			elif objeto.has_method("ser_mirada"):
-				# Si miramos a una estatua nueva o a la misma, cancelamos cualquier temporizador de espera
 				if estatua_referencia != objeto:
-					# Si ya teníamos una guardada antes, la liberamos primero de forma segura
 					if is_instance_valid(estatua_referencia) and estatua_referencia.has_method("ser_mirada"):
 						estatua_referencia.ser_mirada(false)
 					estatua_referencia = objeto
