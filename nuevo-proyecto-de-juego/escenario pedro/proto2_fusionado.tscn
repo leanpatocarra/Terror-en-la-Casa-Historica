@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bvl4s3i2hgxcu" path="res://Sonidos_Ignacio/ambiente/SonidoAmbientalSuspenso.mp3" id="29_8j5m1"]
 [ext_resource type="PackedScene" uid="uid://tqptsno3bdt8" path="res://Mundo/piso/textures/puerta.tscn" id="29_htw5t"]
 [ext_resource type="PackedScene" uid="uid://cnumluuvkaiih" path="res://Mundo/Objetos/papelJuego.tscn" id="33_5fy6y"]
+[ext_resource type="PackedScene" uid="uid://c32esxynpmy8w" path="res://Gero_Menu/menu_pausa.tscn" id="35_0dlxw"]
 [ext_resource type="PackedScene" uid="uid://jtk5hgwwo3e" path="res://Mundo/piso/objetos/mesa2.tscn" id="36_ypd7n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ef8rt"]
@@ -1641,7 +1642,7 @@ environment = SubResource("Environment_xrivr")
 transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -85.3151, 3.0891294, -4.4001846)
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -38.82843, 2.5511336, -59.095932)
 max_stamina = 100.0
 stamina_drain_rate = 25.0
 stamina_recover_rate = 15.0
@@ -1676,3 +1677,7 @@ transform = Transform3D(4.7615957, 0, 0, 0, 5.6300273, 0, 0, 0, -0.20220363, -28
 
 [node name="Tree by Marc Solà - 6Yjt8nIwLsD" parent="." unique_id=300902676 instance=ExtResource("12_ebabg")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 17.155005, -0.09254527, -75.88727)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=761471835]
+
+[node name="MenuPausa" parent="CanvasLayer" unique_id=1910793488 instance=ExtResource("35_0dlxw")]

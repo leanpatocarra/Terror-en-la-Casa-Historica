@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bvd83kdxrbjto"]
 
 [ext_resource type="Script" uid="uid://ykabv2fg6we3" path="res://Gero_Menu/game_over.gd" id="1_y26ei"]
+[ext_resource type="AudioStream" uid="uid://dwu1g5icd8lyj" path="res://Sonidos_Ignacio/menu/SonidodeAgarre_IniciodeBotones.mp3" id="2_bpgxd"]
+[ext_resource type="AudioStream" uid="uid://cifynyhm7detm" path="res://Sonidos_Ignacio/menu/SalidoMenu.mp3" id="3_krjex"]
 
 [node name="GameOver" type="Control" unique_id=1328535567]
 layout_mode = 3
@@ -49,6 +51,14 @@ text = "Te volviste loco"
 layout_mode = 2
 text = "Reintentar"
 
+[node name="AudioReintentar" type="AudioStreamPlayer" parent="Botonera/BtnReintentar" unique_id=1608525938]
+stream = ExtResource("2_bpgxd")
+volume_db = 24.0
+
 [node name="BtnMenu" type="Button" parent="Botonera" unique_id=2146155596]
 layout_mode = 2
 text = "Volver al menu"
+
+[node name="AudioMenu" type="AudioStreamPlayer" parent="Botonera/BtnMenu" unique_id=1425562769]
+stream = ExtResource("3_krjex")
+volume_db = 24.0

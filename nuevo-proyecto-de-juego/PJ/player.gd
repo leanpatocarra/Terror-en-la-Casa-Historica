@@ -266,21 +266,18 @@ func morir() -> void:
 	velocity = Vector3.ZERO
 	print("GAME OVER: Te has quedado sin cordura.")
 
+# 1. Intentar reproducir la animación
 	if anim_player and anim_player.has_animation("Death01"):
-		print("Reproduciendo animación: Death01")
 		anim_player.play("Death01")
 	elif anim_player and anim_player.has_animation("Death01"):
-		print("Reproduciendo animación: Death01")
 		anim_player.play("Death01")
 
 	# 2. Esperar 2 segundos (tiempo para ver caer al personaje) sin congelar el código
-	print("Esperando que termine la secuencia visual...")
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 
 	# 3. Cambiar de escena forzadamente
-	print("Cambiando a escena de Game Over...")
 	var error_code = get_tree().change_scene_to_file("res://Gero_Menu/game_over.tscn")
-
+	
 	if error_code != OK:
 		print("ERROR al cambiar de escena. Código de error: ", error_code)
 

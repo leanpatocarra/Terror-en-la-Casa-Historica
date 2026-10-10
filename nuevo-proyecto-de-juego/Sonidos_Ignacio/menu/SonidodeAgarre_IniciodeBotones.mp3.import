@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/SonidodeAgarre_IniciodeBotones.mp3-b75bd86d88
 
 [params]
 
-loop=true
+loop=false
 loop_offset=2.0
-bpm=120.04
+bpm=0.0
 beat_count=0
-bar_beats=13
+bar_beats=4
