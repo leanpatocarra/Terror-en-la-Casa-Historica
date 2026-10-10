@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bjy32gdev24w8"]
+
+[ext_resource type="PackedScene" uid="uid://buveai8ex1xn1" path="res://Mundo/piso/objetos/Wall painting by jeremy - 62zn39CRkbG.glb" id="1_xxf00"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(10.038452, 13.871216, 1.8512573)
+
+[node name="Wall painting by jeremy - 62zn39CRkbG" unique_id=1640428333 instance=ExtResource("1_xxf00")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1563550632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.3213215, 0.45091867)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1737555491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09100342, -1.5761108, -0.1822815)
+shape = SubResource("BoxShape3D_xrivr")

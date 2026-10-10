@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cvbaqc8uiw01a"]
+
+[ext_resource type="PackedScene" uid="uid://befftir6skbqa" path="res://Mundo/piso/objetos/Chair by Poly by Google - 13AL0KYItKD.glb" id="1_ev4ep"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(5.7001953, 12.850098, 5.7285156)
+
+[node name="Chair by Poly by Google - 13AL0KYItKD" unique_id=1872151270 instance=ExtResource("1_ev4ep")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1054709373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.585954, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1464978043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86206055, 0)
+shape = SubResource("BoxShape3D_xrivr")

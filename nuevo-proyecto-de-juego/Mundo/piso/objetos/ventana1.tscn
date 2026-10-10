@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://v2pxa7o1mjkg"]
+
+[ext_resource type="PackedScene" uid="uid://c3y7mnchv31uh" path="res://Mundo/piso/objetos/Window by Quaternius - EY1zrFcme9.glb" id="1_pn24d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(0.4423828, 0.55700684, 0.17834473)
+
+[node name="Root Scene" unique_id=7806726 instance=ExtResource("1_pn24d")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=124405558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09489563, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1303787974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07702637, 0.07305908)
+shape = SubResource("BoxShape3D_13qdw")

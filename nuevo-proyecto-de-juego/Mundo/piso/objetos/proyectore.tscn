@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://158dn0oqje2m"]
+
+[ext_resource type="PackedScene" uid="uid://dn1shlfenx58x" path="res://Mundo/piso/objetos/projector screen by Jonathan Granskog - dtfi0MpW8a5.glb" id="1_647hn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(0.07714844, 1.2733765, 1)
+
+[node name="projector screen by Jonathan Granskog - dtfi0MpW8a5" unique_id=1073584716 instance=ExtResource("1_647hn")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="8" unique_id=276571568]
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1334925384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019622803, 0)
+shape = SubResource("BoxShape3D_xrivr")

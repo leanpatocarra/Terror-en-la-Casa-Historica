@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c64ex434o445m"]
+
+[ext_resource type="PackedScene" uid="uid://c7wg0t2xb8soa" path="res://Mundo/piso/objetos/Lamp Post by avin vij - 46XiLOBFYcE.glb" id="1_fv1d8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13qdw"]
+radius = 0.6279297
+height = 10.52002
+
+[node name="Lamp Post by avin vij - 46XiLOBFYcE" unique_id=915321111 instance=ExtResource("1_fv1d8")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1675010131]
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=914589500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45043945, 0)
+shape = SubResource("CapsuleShape3D_13qdw")

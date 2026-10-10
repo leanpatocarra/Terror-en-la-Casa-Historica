@@ -2,5 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://dy7irjfjk04ld" path="res://Mundo/piso/textures/Doors_RoundArch.fbx" id="1_6onor"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.4009094, 2.9782715, 0.26367188)
+
 [node name="Doors_RoundArch" unique_id=33019220 instance=ExtResource("1_6onor")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=643516490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0261809, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1019423900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026535034, 0.46203613, 0)
+shape = SubResource("BoxShape3D_xrivr")

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bimb7ahi6cli0"]
+
+[ext_resource type="PackedScene" uid="uid://3rx7ftrgryd5" path="res://Mundo/piso/objetos/Table by Zoe XR - 6K7cCtQAkY0.glb" id="1_wv7ij"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(4.8085938, 3.6154785, 4.647461)
+
+[node name="Table by Zoe XR - 6K7cCtQAkY0" unique_id=1161678400 instance=ExtResource("1_wv7ij")]
+
+[node name="group806457874" parent="." index="0" unique_id=1404088285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1357875, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=975883908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0376167, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1062612412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3077393, 0)
+shape = SubResource("BoxShape3D_xrivr")

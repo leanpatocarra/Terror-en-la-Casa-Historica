@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://jtk5hgwwo3e"]
+
+[ext_resource type="PackedScene" uid="uid://bif5ubcgsae4x" path="res://Mundo/piso/objetos/Table by CMHT Oculus - 0WwhayzV52T.glb" id="1_k12ty"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(56.41211, 21.40393, 32.21649)
+
+[node name="Table by CMHT Oculus - 0WwhayzV52T" unique_id=896950742 instance=ExtResource("1_k12ty")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1946576457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 346.7813, 18.735004, -204.34444)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=91806858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.534851, -1.552887)
+shape = SubResource("BoxShape3D_13qdw")

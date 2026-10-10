@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b1g34ia7lqewc"]
+
+[ext_resource type="PackedScene" uid="uid://cvdyp5mhqi6r6" path="res://Mundo/piso/objetos/Chest by Quaternius - O72u4Drp8k.glb" id="1_j1gkm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(1.2861328, 0.94329834, 1)
+
+[node name="Root Scene" unique_id=217293631 instance=ExtResource("1_j1gkm")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1038695091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33688372, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1057472681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1288147, 0)
+shape = SubResource("BoxShape3D_13qdw")

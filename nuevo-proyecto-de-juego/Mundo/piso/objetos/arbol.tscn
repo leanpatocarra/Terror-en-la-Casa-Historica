@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d3v7jha3l3hio"]
+
+[ext_resource type="PackedScene" uid="uid://cadqsldtqv8gy" path="res://Mundo/piso/objetos/Tree by Marc Solà - 6Yjt8nIwLsD.glb" id="1_kdj3k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13qdw"]
+radius = 0.15234375
+height = 1.4648438
+
+[node name="Tree by Marc Solà - 6Yjt8nIwLsD" unique_id=1315069156 instance=ExtResource("1_kdj3k")]
+
+[node name="Node" parent="." index="0" unique_id=1564697130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00056672096, 1.2105637, -0.0017449297)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=663077939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122124225, 0.019437253, 0.02598302)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1813088280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5683594, 0)
+shape = SubResource("CapsuleShape3D_13qdw")

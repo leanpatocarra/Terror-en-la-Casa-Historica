@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b02sv0b2tkejm"]
+
+[ext_resource type="PackedScene" uid="uid://dbcxbqndt3l4k" path="res://Mundo/piso/objetos/Piano by jeremy - 7U-93vxPOER.glb" id="1_5aiov"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(12.987122, 10.209198, 10.937012)
+
+[node name="Piano by jeremy - 7U-93vxPOER" unique_id=226875884 instance=ExtResource("1_5aiov")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2067739129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.959236, 0)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1471131878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021472454, 0.47047424, 0.2766819)
+shape = SubResource("BoxShape3D_13qdw")

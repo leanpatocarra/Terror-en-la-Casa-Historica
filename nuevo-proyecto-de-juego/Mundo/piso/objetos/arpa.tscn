@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://vopjki0imj5s"]
+
+[ext_resource type="PackedScene" uid="uid://ce4vup8vi6gbo" path="res://Mundo/piso/objetos/Harp by Poly by Google - 102E7hcxEPT.glb" id="1_4c8yk"]
+[ext_resource type="Texture2D" uid="uid://c6mtqiddv3ana" path="res://Mundo/piso/textures/wood_table_worn_diff_1k.jpg" id="2_5s40e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1lj4"]
+albedo_color = Color(0.99514896, 0.34237343, 0, 0.78300005)
+albedo_texture = ExtResource("2_5s40e")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_13qdw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.267456, 5.23938, 0.9996338)
+
+[node name="Harp by Poly by Google - 102E7hcxEPT" unique_id=202634818 instance=ExtResource("1_4c8yk")]
+
+[node name="Harp_mesh" parent="." index="0" unique_id=1951244264]
+surface_material_override/0 = SubResource("StandardMaterial3D_b1lj4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=560550070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18937767, 1.9448318, 0)
+physics_material_override = SubResource("PhysicsMaterial_13qdw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=212810669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12973642, 0.77508545, -0.09539795)
+shape = SubResource("BoxShape3D_xrivr")
