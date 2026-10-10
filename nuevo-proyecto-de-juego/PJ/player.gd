@@ -153,7 +153,7 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 		var objeto = raycast_vision.get_collider()
 		
 		if is_instance_valid(objeto):
-			# Interacción con el Papel
+			# Interacción con el Papel (Tu código original intacto)
 			if objeto.has_method("interactuar"):
 				print(">>> [RAYCAST] ¡Estás mirando al papel interactivo! <<<")
 				
@@ -167,7 +167,13 @@ func comprobar_vision_y_sanidad(delta: float) -> void:
 							estatua.activar_estatua()
 							print(">>> ¡Estatua activada desde el Player! <<<")
 
-			# Interacción con la Estatua (Mirarla para detenerla)
+			# LÍNEAS AGREGADAS: Soporte para cuadros, telégrafo u objetos hijos que tengan la función interactuar
+			elif objeto.get_parent() and objeto.get_parent().has_method("interactuar"):
+				if Input.is_action_just_pressed("interactuar"):
+					print(">>> [TECLA PRESIONADA] Interacción con objeto hijo detectada <<<")
+					objeto.get_parent().interactuar()
+
+			# Interacción con la Estatua (Mirarla para detenerla - Tu código original intacto)
 			elif objeto.has_method("ser_mirada"):
 				# Si miramos a una estatua nueva o a la misma, cancelamos cualquier temporizador de espera
 				if estatua_referencia != objeto:
@@ -266,7 +272,7 @@ func morir() -> void:
 	velocity = Vector3.ZERO
 	print("GAME OVER: Te has quedado sin cordura.")
 
-# 1. Intentar reproducir la animación
+# 1. Intentar reproducir la animación (Mantenido idéntico)
 	if anim_player and anim_player.has_animation("Death01"):
 		anim_player.play("Death01")
 	elif anim_player and anim_player.has_animation("Death01"):

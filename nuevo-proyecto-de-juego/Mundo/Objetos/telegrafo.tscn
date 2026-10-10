@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bujvyjheueby0"]
+
+[ext_resource type="PackedScene" uid="uid://clwlwef88qdju" path="res://Mundo/Objetos/scene.gltf" id="1_qjn7t"]
+[ext_resource type="Script" uid="uid://cqkk3jsag7llg" path="res://Mundo/Objetos/telegrafo.gd" id="2_0a24a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.0594482, 1.8751221, 2.4230957)
+
+[node name="Node3D" type="StaticBody3D" unique_id=1105136810]
+collision_layer = 0
+
+[node name="Sketchfab_Scene" parent="." unique_id=46774542 instance=ExtResource("1_qjn7t")]
+transform = Transform3D(0.4, 0, 0, 0, 0.278, 0, 0, 0, 0.303, -7.5865445, 0, -9.742305)
+script = ExtResource("2_0a24a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2085344101]
+transform = Transform3D(4.1409736, 0, 0, 0, 4.1409736, 0, 0, 0, 4.1409736, -7.3897414, 1.8119286, -8.642853)
+shape = SubResource("BoxShape3D_xrivr")
