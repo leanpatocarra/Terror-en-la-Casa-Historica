@@ -433,12 +433,6 @@ fog_sun_scatter = 0.01
 [node name="Base" type="Node3D" unique_id=1565331911]
 script = ExtResource("1_5fy6y")
 
-[node name="AudioSonidoAmbiental" type="AudioStreamPlayer" parent="." unique_id=1647743530]
-stream = ExtResource("2_xjc28")
-volume_db = 4.026
-autoplay = true
-mix_target = 1
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=929541830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2967415, 0.18707466, 0.89310455)
 visible = false
@@ -1741,7 +1735,7 @@ script = ExtResource("33_24mmi")
 transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -30.992462, 3.564158, -67.20326)
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -103.36783, 3.564158, 53.05242)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=316596278]
 
@@ -1774,8 +1768,17 @@ transform = Transform3D(4.7615957, 4.9219256e-07, 8.563656e-23, -1.7424975e-08, 
 
 [node name="AudioMaldicion1" type="AudioStreamPlayer" parent="." unique_id=1973493710]
 stream = ExtResource("41_nee3p")
-volume_db = 13.5
+volume_db = -0.7
+pitch_scale = 0.3
 
 [node name="AudioMaldicion2" type="AudioStreamPlayer" parent="." unique_id=270387498]
 stream = ExtResource("42_4hljp")
-volume_db = 10.5
+volume_db = -7.0
+pitch_scale = 0.3
+
+[node name="AudioSonidoAmbiental" type="AudioStreamPlayer" parent="." unique_id=1647743530]
+stream = ExtResource("2_xjc28")
+volume_db = -7.0
+pitch_scale = 0.3
+autoplay = true
+mix_target = 1

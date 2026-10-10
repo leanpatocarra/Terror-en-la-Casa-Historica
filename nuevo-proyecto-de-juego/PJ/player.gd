@@ -4,9 +4,9 @@ extends CharacterBody3D
 # MOVIMIENTO
 # =========================================================
 
-var correr = 80.0
+var correr = 25.0
 var JUMP_VELOCITY = 5.2
-var caminar = 16.6
+var caminar = 15.6
 var velocidad_actual = 10.6
 
 # ========================================================= 
