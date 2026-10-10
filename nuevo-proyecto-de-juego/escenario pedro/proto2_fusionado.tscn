@@ -318,10 +318,6 @@ texture_filter = 0
 albedo_texture = ExtResource("5_j153e")
 texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3knt1"]
-albedo_texture = ExtResource("5_j153e")
-texture_filter = 0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3heq1"]
 albedo_texture = ExtResource("5_orga1")
 texture_filter = 0
@@ -1366,7 +1362,7 @@ transform = Transform3D(0.00699972, 0, -0.32992554, 0, 0.32999998, 0, 0.32992554
 transform = Transform3D(0.006999716, 0, -0.32992536, 0, 0.32999998, 0, 0.32992536, 0, 0.006999716, -19.25145, -5.136437, 5.7317314)
 
 [node name="EstatuaNueva2" parent="CSGCombiner3D/Fondo2/fondo25" unique_id=894697978 instance=ExtResource("11_y4ujb")]
-transform = Transform3D(1.3504845, 0, 0.3690415, 0, 1.4, 0, -0.3690415, 0, 1.3504845, 0.0076293945, -5.3778033, 31.302097)
+transform = Transform3D(1.3504845, -2.2066287e-08, 0.36904153, -0.03548685, 1.3935122, 0.129862, -0.36733136, -0.1346234, 1.3442262, 0.0076293945, -5.3778033, 31.302097)
 script = null
 
 [node name="fondo26" type="CSGBox3D" parent="CSGCombiner3D/Fondo2" unique_id=1512614002]
@@ -1453,30 +1449,24 @@ size = Vector3(1.134, 63.63, 1)
 material = SubResource("StandardMaterial3D_wcuhp")
 
 [node name="pergola1" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=76137081]
-transform = Transform3D(-4.3711104e-08, -0.99999523, 0, 1, -4.371118e-08, 0, 0, 0, 0.99999523, 5.363266, 14.040596, -0.1889801)
+transform = Transform3D(-4.3711093e-08, -0.99999505, 0, 1, -4.371117e-08, 0, 0, 0, 0.99999505, 5.3632646, 29.881794, -0.1889801)
 size = Vector3(1.134, 12.924553, 1)
 material = SubResource("StandardMaterial3D_4taiv")
 
 [node name="pergola2" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=2016742812]
-transform = Transform3D(-4.371102e-08, -0.9999938, 0, 1, -4.371112e-08, 0, 0, 0, 0.9999938, 5.3988504, -0.22598267, -0.12596893)
+transform = Transform3D(-4.3711005e-08, -0.99999356, 0, 1, -4.3711108e-08, 0, 0, 0, 0.99999356, 5.3988485, 10.071518, -0.12596893)
 size = Vector3(1.134, 13.113743, 1)
 material = SubResource("StandardMaterial3D_epyet")
 
 [node name="pergola3" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=1733292481]
-transform = Transform3D(-4.371116e-08, -0.9999962, 0, 1, -4.371122e-08, 0, 0, 0, 0.9999962, 5.301136, -14.296997, -0.12597656)
-size = Vector3(1.134, 12.92429, 1)
+transform = Transform3D(-4.3711132e-08, -0.9999957, 0, 1, -4.37112e-08, 0, 0, 0, 0.9999957, 5.3859773, -9.641403, -0.12597656)
+size = Vector3(1.134, 13.093981, 1)
 material = SubResource("StandardMaterial3D_lf6hn")
 
 [node name="pergola4" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=1720569098]
-transform = Transform3D(-4.3710944e-08, -0.99999255, 0, 1, -4.371106e-08, 0, 0, 0, 0.99999255, 5.410036, -26.896988, -0.12597656)
-size = Vector3(1.134, 12.890098, 1)
+transform = Transform3D(-4.3710774e-08, -0.9999897, 0, 1, -4.3710937e-08, 0, 0, 0, 0.9999897, 5.608896, -28.82782, -0.12597656)
+size = Vector3(1.134, 13.287823, 1)
 material = SubResource("StandardMaterial3D_l6ved")
-
-[node name="pergola5" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=1932420534]
-transform = Transform3D(-4.371125e-08, -0.9999977, 0, 1, -4.3711285e-08, 0, 0, 0, 0.9999977, 5.4840403, 28.85799, -0.12597656)
-use_collision = true
-size = Vector3(1.134, 12.724094, 1)
-material = SubResource("StandardMaterial3D_3knt1")
 
 [node name="pergolapared" type="CSGBox3D" parent="CSGCombiner3D/viga" unique_id=1781485977]
 transform = Transform3D(4.371026e-08, -0.99999845, -7.164507e-15, -0.9999763, -4.371132e-08, 1.6390533e-07, -1.6390496e-07, 0, -0.9999747, 1.3851337, 2.409546, -20.713623)
@@ -1651,7 +1641,7 @@ environment = SubResource("Environment_xrivr")
 transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, 62.79225, 3.0891294, 55.89619)
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -85.3151, 3.0891294, -4.4001846)
 max_stamina = 100.0
 stamina_drain_rate = 25.0
 stamina_recover_rate = 15.0
@@ -1676,7 +1666,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="ESTATUA_rig,modelado" parent="." unique_id=1303600295 instance=ExtResource("11_y4ujb")]
-transform = Transform3D(-0.08927243, 0, -1.3854644, 0, 1.5, 0, 1.4906185, 0, -0.0829748, -125.314995, 0.33941317, -84.87221)
+transform = Transform3D(-0.08927243, 0, -1.3854644, 0, 1.5, 0, 1.4906185, 0, -0.0829748, -125.314995, -0.14076042, -84.87221)
 
 [node name="EstatuaNueva" parent="." unique_id=329145129 instance=ExtResource("11_y4ujb")]
 transform = Transform3D(-0.99927425, 0, 0.038091414, 0, 1, 0, -0.038091414, 0, -0.99927425, 14.606436, -0.44174504, -78.442955)
