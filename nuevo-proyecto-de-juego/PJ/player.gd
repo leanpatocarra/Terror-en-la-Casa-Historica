@@ -29,6 +29,10 @@ var current_sanity: float = 100.0
 @export var sanity_drain_rate: float = 15.0
 @export var sanity_recover_rate: float = 5.0
 
+# VARIABLES DE PELIGRO POR PROXIMIDAD (Mover aquí arriba):
+@export var distancia_peligro_inmediato: float = 3.5
+@export var multiplicador_drenaje_proximidad: float = 6.0
+
 # REFERENCIAS DE UI Y AUDIO
 @onready var filtro_oscuridad: ColorRect = $CanvasLayer/FiltroOscuridad
 @onready var audio_respiracion: AudioStreamPlayer = get_node_or_null("AudioRespiracion")
@@ -43,12 +47,18 @@ var esta_muerto: bool = false
 @onready var anim_player: AnimationPlayer = $Modelo/Body/AnimationPlayer
 @onready var raycast_vision: RayCast3D = $Head/Camera3D/RayCast3D 
 
-# =========================================================
-# ESTATUA
+#=========================================================
+# ESTATUA Y PAUSA
 # =========================================================
 
 var estatua_referencia: CharacterBody3D = null
 var evento_activado: bool = false
+
+# ALTERA ESTE VALOR: 
+# Cámbialo de 3.0 a un tiempo más corto (por ejemplo, 1.0 o 0.5 segundos)
+@export var tiempo_pausa_persecucion: float = 1.0 
+var temporizador_pausa_estatua: float = 0.0
+var esperando_para_reanudar: bool = false
 
 # =========================================================
 # INICIO
@@ -78,42 +88,24 @@ func _ready() -> void:
 # =========================================================
 
 func _physics_process(delta: float) -> void:
-	# Si el jugador está muerto, frena y bloquea todo input
 	if esta_muerto:
 		return
 
-	# -----------------------------------------------------
 	# 1. VISIÓN + SANIDAD
-	# -----------------------------------------------------
 	comprobar_vision_y_sanidad(delta)
 
-	# -----------------------------------------------------
 	# 2. GRAVEDAD Y SALTO
-	# -----------------------------------------------------
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	if Input.is_action_just_pressed("Saltar") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# -----------------------------------------------------
 	# 3. DIRECCIÓN DE MOVIMIENTO
-	# -----------------------------------------------------
-	var input_dir := Input.get_vector(
-		"Izquierda",
-		"Derecha",
-		"Adelante",
-		"Atras"
-	)
+	var input_dir := Input.get_vector("Izquierda", "Derecha", "Adelante", "Atras")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	var direction := (
-		transform.basis *
-		Vector3(input_dir.x, 0, input_dir.y)
-	).normalized()
-
-	# -----------------------------------------------------
 	# 4. LÓGICA DE STAMINA Y CANSANCIO (20% MÍNIMO)
-	# -----------------------------------------------------
 	if current_stamina <= 0.0:
 		cansado = true
 
@@ -129,13 +121,10 @@ func _physics_process(delta: float) -> void:
 		current_stamina += stamina_recover_rate * delta
 		
 	current_stamina = clamp(current_stamina, 0.0, max_stamina)
-	
 	if barra_stamina:
 		barra_stamina.value = current_stamina
 
-	# -----------------------------------------------------
 	# 5. APLICAR VELOCIDAD Y ANIMACIÓN DE MOVIMIENTO
-	# -----------------------------------------------------
 	if direction:
 		velocity.x = direction.x * velocidad_actual
 		velocity.z = direction.z * velocidad_actual
@@ -152,264 +141,127 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-# =========================================================
-# COMPROBAR VISIÓN DE LA ESTATUA + SANIDAD (REVISADO)
-# =========================================================
-
-@export var distancia_peligro_inmediato: float = 3.5
-@export var multiplicador_drenaje_proximidad: float = 6.0
-
 func comprobar_vision_y_sanidad(delta: float) -> void:
 	var mirando_a_estatua := false
 	var estatua_esta_cerca := false
+	var lista_estatuas = get_tree().get_nodes_in_group("estatua")
 
-	# =========================================================
-	# 1. DETECCIÓN DEL RAYCAST E INTERACCIÓN SEGURA
-	# =========================================================
+	# -----------------------------------------------------
+	# 1. DETECCIÓN DEL RAYCAST (INTERACCIONES)
+	# -----------------------------------------------------
 	if raycast_vision and raycast_vision.is_colliding():
 		var objeto = raycast_vision.get_collider()
 		
-		# Verificamos que el objeto siga existiendo en memoria antes de leerlo
 		if is_instance_valid(objeto):
-			
-			# Print de diagnóstico seguro
-			print("[RAYCAST MIRANDO A]: ", objeto.name)
-			
-			# Detectar el papel / objetos interactuables
+			# Interacción con el Papel
 			if objeto.has_method("interactuar"):
-				print(">>> ¡¡¡ÉXITO: RAYCAST DETECTÓ EL PAPEL!!! <<<")
+				print(">>> [RAYCAST] ¡Estás mirando al papel interactivo! <<<")
 				
 				if Input.is_action_just_pressed("interactuar"):
 					print(">>> [TECLA PRESIONADA] Se interactuó con el papel <<<")
 					objeto.interactuar()
-					evento_activado = true # Se activa la persecución/evento
+					evento_activado = true 
+					
+					for estatua in lista_estatuas:
+						if is_instance_valid(estatua) and estatua.has_method("activar_estatua"):
+							estatua.activar_estatua()
+							print(">>> ¡Estatua activada desde el Player! <<<")
 
-			# Detectar la estatua
+			# Interacción con la Estatua (Mirarla para detenerla)
 			elif objeto.has_method("ser_mirada"):
+				# Si miramos a una estatua nueva o a la misma, cancelamos cualquier temporizador de espera
 				if estatua_referencia != objeto:
+					# Si ya teníamos una guardada antes, la liberamos primero de forma segura
+					if is_instance_valid(estatua_referencia) and estatua_referencia.has_method("ser_mirada"):
+						estatua_referencia.ser_mirada(false)
 					estatua_referencia = objeto
+				
 				mirando_a_estatua = true
+				esperando_para_reanudar = false
+				temporizador_pausa_estatua = 0.0
 				objeto.ser_mirada(true)
 
-	# Si la mirada deja de enfocar a la estatua previa, la liberamos
+	# -----------------------------------------------------
+	# CONTROLES DE REPROCHES Y TIEMPO DE ESPERA (RETRASO DESDE EL PLAYER)
+	# -----------------------------------------------------
 	if not mirando_a_estatua and is_instance_valid(estatua_referencia):
-		if estatua_referencia.has_method("ser_mirada"):
-			estatua_referencia.ser_mirada(false)
-		estatua_referencia = null
-
-	# =========================================================
-	# 2. CONTROL DEL EVENTO Y SANIDAD
-	# =========================================================
-	# Si el papel no ha sido tomado, no se procesa el daño de sanidad
-	if not evento_activado:
-		return
-
-	# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
-	var lista_estatuas = get_tree().get_nodes_in_group("estatua")
-	
-	for nodo_estatua in lista_estatuas:
-		if is_instance_valid(nodo_estatua):
-			var pos_estatua_plana = nodo_estatua.global_position
-			var pos_jugador_plana = global_position
-			pos_estatua_plana.y = 0.0
-			pos_jugador_plana.y = 0.0
-			
-			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
-				estatua_esta_cerca = true
-				break
-
-	# MÁQUINA DE CONSECUENCIAS (Drenaje físico)
-	if estatua_esta_cerca:
-		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
-		current_sanity = clamp(current_sanity, 0.0, max_sanity)
-		actualizar_efectos_sanidad()
-		
-		if current_sanity <= 0 and not esta_muerto:
-			morir()
-			
-	elif mirando_a_estatua:
-		perder_sanidad(delta)
-		
-	else:
-		recuperar_sanidad(delta)
-		
-	# =========================================================
-	# CONTROL DE EVENTO Y SANIDAD
-	# =========================================================
-	if not evento_activado:
-		return
-
-# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
-
-	for nodo_estatua in lista_estatuas:
-		if is_instance_valid(nodo_estatua):
-			var pos_estatua_plana = nodo_estatua.global_position
-			var pos_jugador_plana = global_position
-			pos_estatua_plana.y = 0.0
-			pos_jugador_plana.y = 0.0
-			
-			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
-				estatua_esta_cerca = true
-				break
-
-	# MÁQUINA DE CONSECUENCIAS
-	if estatua_esta_cerca:
-		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
-		current_sanity = clamp(current_sanity, 0.0, max_sanity)
-		actualizar_efectos_sanidad()
-		
-		if current_sanity <= 0 and not esta_muerto:
-			morir()
-			
-	elif mirando_a_estatua:
-		perder_sanidad(delta)
-		
-	else:
-		recuperar_sanidad(delta)
-
-	# =========================================================
-	# 1. DETECCIÓN DEL PAPEL E INTERACCIÓN (SIEMPRE ACTIVO)
-	# =========================================================
-	if raycast_vision and raycast_vision.is_colliding():
-		var objeto = raycast_vision.get_collider()
-		
-		# Si miras al objeto interactuable (papel)
-		if objeto and objeto.has_method("interactuar"):
-			print(">>> [RAYCAST] ¡Estás mirando al papel interactivo! <<<")
-			
-
-	if Input.is_action_just_pressed("interactuar"):
-		print(">>> [TECLA PRESIONADA] Se interactuó con el papel <<<")
-		objeto.interactuar()
-		evento_activado = true # Se activa la sanidad en el player
-
-	for estatua in lista_estatuas:
-		if is_instance_valid(estatua) and estatua.has_method("activar_estatua"):
-			estatua.activar_estatua()
-			print(">>> ¡Estatua activada correctamente desde el Player! <<<")
-
-		# Si el objeto es la estatua (para detenerla al mirarla)
-		elif objeto and objeto.has_method("ser_mirada"):
-			if estatua_referencia != objeto:
-				estatua_referencia = objeto
-			mirando_a_estatua = true
-			objeto.ser_mirada(true)
-
-	# Si la mirada deja de enfocar a la estatua previa, la liberamos
-	if not mirando_a_estatua and estatua_referencia and is_instance_valid(estatua_referencia):
-		if estatua_referencia.has_method("ser_mirada"):
-			estatua_referencia.ser_mirada(false)
-		estatua_referencia = null
-
-	# =========================================================
-	# 2. CONTROL DEL EVENTO (SANIDAD Y DISTANCIA)
-	# =========================================================
-	if not evento_activado:
-		return
-
-	# EVALUAR PROXIMIDAD DE ESTATUAS POR GRUPO
-	
-	for nodo_estatua in lista_estatuas:
-		if is_instance_valid(nodo_estatua):
-			var pos_estatua_plana = nodo_estatua.global_position
-			var pos_jugador_plana = global_position
-			pos_estatua_plana.y = 0.0
-			pos_jugador_plana.y = 0.0
-			
-			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
-				estatua_esta_cerca = true
-				break
-
-	# MÁQUINA DE CONSECUENCIAS
-	if estatua_esta_cerca:
-		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
-		current_sanity = clamp(current_sanity, 0.0, max_sanity)
-		actualizar_efectos_sanidad()
-		
-		if current_sanity <= 0 and not esta_muerto:
-			morir()
-			
-	elif mirando_a_estatua:
-		perder_sanidad(delta)
-		
-	else:
-		recuperar_sanidad(delta)
-
-
-# =========================================================
-# ACTUALIZAR SANIDAD (EFECTOS VISUALES Y AUDITIVOS)
-# =========================================================
-
-func actualizar_efectos_sanidad() -> void:
-	# Porcentaje de cordura perdida (0.0 = sanidad llena, 1.0 = sanidad en cero)
-	var perdida: float = 1.0 - (current_sanity / max_sanity)
-
-	# 1. Filtro de oscuridad: aumenta la opacidad (Alpha) del ColorRect
-	if filtro_oscuridad:
-		filtro_oscuridad.color.a = perdida
-
-	# 2. Control de audio de respiración
-	if audio_respiracion:
-		if perdida > 0.1:
-			if not audio_respiracion.playing:
-				audio_respiracion.play()
-			audio_respiracion.volume_db = lerp(-20.0, 5.0, perdida)
+		if not esperando_para_reanudar:
+			# El jugador dejó de mirar este fotograma, iniciamos la cuenta regresiva
+			esperando_para_reanudar = true
+			temporizador_pausa_estatua = tiempo_pausa_persecucion
 		else:
-			if audio_respiracion.playing:
-				audio_respiracion.stop()
+			# Descontamos tiempo
+			temporizador_pausa_estatua -= delta
+			if temporizador_pausa_estatua <= 0.0:
+				# Terminó el tiempo de gracia, ahora sí le avisamos a la estatua que se mueva
+				if estatua_referencia.has_method("ser_mirada"):
+					estatua_referencia.ser_mirada(false)
+				estatua_referencia = null
+				esperando_para_reanudar = false
+
+	# -----------------------------------------------------
+	# 2. CONTROL DEL EVENTO ACTIVO Y PROXIMIDAD
+	# -----------------------------------------------------
+	if not evento_activado:
+		return
+
+	# Evaluar si alguna estatua está demasiado cerca
+	for nodo_estatua in lista_estatuas:
+		if is_instance_valid(nodo_estatua):
+			var pos_estatua_plana = nodo_estatua.global_position
+			var pos_jugador_plana = global_position
+			pos_estatua_plana.y = 0.0
+			pos_jugador_plana.y = 0.0
+			
+			if pos_estatua_plana.distance_to(pos_jugador_plana) <= distancia_peligro_inmediato:
+				estatua_esta_cerca = true
+				break
+
+	# Máquina de consecuencias de Sanidad
+	if estatua_esta_cerca:
+		current_sanity -= (sanity_drain_rate * multiplicador_drenaje_proximidad) * delta
+		current_sanity = clamp(current_sanity, 0.0, max_sanity)
+		actualizar_efectos_sanidad()
+		
+		if current_sanity <= 0 and not esta_muerto:
+			morir()
+			
+	elif mirando_a_estatua:
+		perder_sanidad(delta)
+		
+	else:
+		recuperar_sanidad(delta)
 
 # =========================================================
-# PERDER SANIDAD
+# GESTIÓN DE SANIDAD Y EFECTOS
 # =========================================================
 
 func perder_sanidad(delta: float) -> void:
 	current_sanity -= sanity_drain_rate * delta
 	current_sanity = clamp(current_sanity, 0.0, max_sanity)
 	actualizar_efectos_sanidad()
-
 	if current_sanity <= 0 and not esta_muerto:
 		morir()
 
-# =========================================================
-# RECUPERAR SANIDAD
-# =========================================================
-
 func recuperar_sanidad(delta: float) -> void:
-	if current_sanity < max_sanity:
-		current_sanity += sanity_recover_rate * delta
-		current_sanity = clamp(current_sanity, 0.0, max_sanity)
-		actualizar_efectos_sanidad()
+	current_sanity += sanity_recover_rate * delta
+	current_sanity = clamp(current_sanity, 0.0, max_sanity)
+	actualizar_efectos_sanidad()
 
-# =========================================================
-# LÓGICA DE MUERTE Y GAME OVER
-# =========================================================
+func actualizar_efectos_sanidad() -> void:
+	if filtro_oscuridad:
+		var perdida: float = 1.0 - (current_sanity / max_sanity)
+		filtro_oscuridad.color.a = clamp(perdida * 0.85, 0.0, 0.85)
+
+	if audio_respiracion:
+		if current_sanity < max_sanity * 0.5:
+			if not audio_respiracion.playing:
+				audio_respiracion.play()
+		else:
+			if audio_respiracion.playing:
+				audio_respiracion.stop()
 
 func morir() -> void:
-	if esta_muerto:
-		return
-		
 	esta_muerto = true
 	velocity = Vector3.ZERO
-	print("--- INICIANDO SECUENCIA DE MUERTE ---")
-
-	# 1. Intentar reproducir la animación
-	if anim_player and anim_player.has_animation("Death01"):
-		print("Reproduciendo animación: Death01")
-		anim_player.play("Death01")
-	elif anim_player and anim_player.has_animation("Death01"):
-		print("Reproduciendo animación: Death01")
-		anim_player.play("Death01")
-
-	# 2. Esperar 2 segundos (tiempo para ver caer al personaje) sin congelar el código
-	print("Esperando que termine la secuencia visual...")
-	await get_tree().create_timer(2.0).timeout
-
-	# 3. Cambiar de escena forzadamente
-	print("Cambiando a escena de Game Over...")
-	var error_code = get_tree().change_scene_to_file("res://Gero_Menu/game_over.tscn")
-	
-	if error_code != OK:
-		print("ERROR al cambiar de escena. Código de error: ", error_code)
-
-func _on_button_pressed() -> void:
-	pass
+	print("GAME OVER: Te has quedado sin cordura.")
