@@ -16,3 +16,20 @@ physics_material_override = SubResource("PhysicsMaterial_xrivr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=914589500]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45043945, 0)
 shape = SubResource("CapsuleShape3D_13qdw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=561116486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051757097, 3.73497, 0)
+light_color = Color(0.8256601, 0.6936256, 0.17559174, 1)
+light_energy = 10.0
+light_indirect_energy = 1.73
+light_volumetric_fog_energy = 4.167
+light_size = 1.0
+light_specular = 0.975
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 2.089
+omni_range = 8.786486
+
+[node name="SpotLight3D" type="SpotLight3D" parent="OmniLight3D" index="0" unique_id=832098256]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -1.1622496, 0)
+spot_range = 7.8362617

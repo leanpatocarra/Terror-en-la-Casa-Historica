@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://158dn0oqje2m" path="res://Mundo/piso/objetos/proyectore.tscn" id="29_0dlxw"]
 [ext_resource type="AudioStream" uid="uid://bvl4s3i2hgxcu" path="res://Sonidos_Ignacio/ambiente/SonidoAmbientalSuspenso.mp3" id="29_8j5m1"]
 [ext_resource type="PackedScene" uid="uid://tqptsno3bdt8" path="res://Mundo/piso/textures/puerta.tscn" id="29_htw5t"]
+[ext_resource type="PackedScene" uid="uid://jtdfssv0tav" path="res://Mundo/Objetos/papel.glb" id="32_dfoa3"]
 [ext_resource type="PackedScene" uid="uid://cnumluuvkaiih" path="res://Mundo/Objetos/papelJuego.tscn" id="33_5fy6y"]
 [ext_resource type="Script" uid="uid://cp6usr1alqgsj" path="res://escenario pedro/world_environment.gd" id="33_24mmi"]
 [ext_resource type="PackedScene" uid="uid://c32esxynpmy8w" path="res://Gero_Menu/menu_pausa.tscn" id="35_0dlxw"]
@@ -507,6 +508,13 @@ size = Vector3(1, 16.710976, 2.5457153)
 [node name="Doors_RoundArch" parent="CSGCombiner3D/EntradaArco" unique_id=643229785 instance=ExtResource("29_htw5t")]
 transform = Transform3D(-0.04088199, 0, 4.9998326, 4.9997563, 0.02763176, 0.04088137, -0.027630834, 4.9999237, -0.00022592826, -0.62965393, -0.33486938, -15.781017)
 
+[node name="Table by Zoe XR - 6K7cCtQAkY0" parent="CSGCombiner3D/EntradaArco" unique_id=1764894926 instance=ExtResource("23_ypd7n")]
+transform = Transform3D(0.587813, 0, 0, 0, 0.0055263517, -0.6289478, 0, 0.99998474, 0.0034758397, -2.6667786, -8.019344, -15.64191)
+
+[node name="Node3D" parent="CSGCombiner3D/EntradaArco" unique_id=1105136810 instance=ExtResource("38_tqd2s")]
+transform = Transform3D(0.0062543694, 0, -0.24992175, -0.24991794, 0.0013815879, -0.006254274, 0.0013811557, 0.24999619, 3.4563844e-05, -4.634369, -9.915005, -11.050249)
+script = ExtResource("39_24mmi")
+
 [node name="PisoEntrada" type="CSGBox3D" parent="CSGCombiner3D" unique_id=571234497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.58696, -0.82401824, -16.772455)
 use_collision = true
@@ -557,6 +565,9 @@ mesh = SubResource("ArrayMesh_lxo87")
 
 [node name="Lamp Post by avin vij - 46XiLOBFYcE" parent="CSGCombiner3D/PisoPatio1/tierra" unique_id=915321111 instance=ExtResource("11_ypd7n")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -32.25135, 6.87978, 11.127018)
+
+[node name="Tree by Marc Solà - 6Yjt8nIwLsD" parent="CSGCombiner3D/PisoPatio1/tierra" unique_id=300902676 instance=ExtResource("12_ebabg")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -24.012865, -0.31389022, -4.7135696)
 
 [node name="Lamp Post by avin vij - 46XiLOBFYcE2" parent="CSGCombiner3D/PisoPatio1/tierra" unique_id=44541019 instance=ExtResource("11_ypd7n")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 31.917114, 6.9051533, 10.771801)
@@ -660,6 +671,12 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -27.492798, 6.883686, -
 
 [node name="Lamp Post by avin vij - 46XiLOBFYcE2" parent="CSGCombiner3D/PisoPatio2/tierra3" unique_id=881263582 instance=ExtResource("11_ypd7n")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 27.71632, 6.880246, -36.826347)
+
+[node name="Lamp Post by avin vij - 46XiLOBFYcE3" parent="CSGCombiner3D/PisoPatio2/tierra3" unique_id=652362316 instance=ExtResource("11_ypd7n")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -28.54026, 7.1751027, 39.182125)
+
+[node name="Lamp Post by avin vij - 46XiLOBFYcE4" parent="CSGCombiner3D/PisoPatio2/tierra3" unique_id=93049776 instance=ExtResource("11_ypd7n")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 27.237679, 7.0635004, 40.06447)
 
 [node name="Tree by Marc Solà - 6Yjt8nIwLsD" parent="CSGCombiner3D/PisoPatio2/tierra3" unique_id=1315069156 instance=ExtResource("12_ebabg")]
 transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 17.366646, -1.0983698, 19.701162)
@@ -1225,11 +1242,41 @@ script = null
 [node name="Root Scene" parent="CSGCombiner3D/Fondo1" unique_id=1286359914 instance=ExtResource("21_omc05")]
 transform = Transform3D(-1.6610328e-07, 0, 3.8, 0, 3.8, 0, -3.8, 0, -1.6610328e-07, -79.96701, -6.4459233, 32.193203)
 
+[node name="Root Scene2" parent="CSGCombiner3D/Fondo1" unique_id=105373275 instance=ExtResource("21_omc05")]
+transform = Transform3D(-1.6610326e-07, 0, 3.7999997, 0, 3.8, 0, -3.7999997, 0, -1.6610326e-07, -79.70737, -6.4459233, 8.937791)
+
 [node name="Cross by 4444ESOUSA - e8NCiLkLPg" parent="CSGCombiner3D/Fondo1" unique_id=1452527446 instance=ExtResource("21_10fol")]
 transform = Transform3D(0.24994768, 0, 0.16590998, 0, 0.3, 0, -0.16590998, 0, 0.24994768, -79.73697, 1.1507668, 20.74456)
 
-[node name="Root Scene2" parent="CSGCombiner3D/Fondo1" unique_id=105373275 instance=ExtResource("21_omc05")]
-transform = Transform3D(-1.6610328e-07, 0, 3.8, 0, 3.8, 0, -3.8, 0, -1.6610328e-07, -79.70738, -6.4459233, 8.937793)
+[node name="Table by Zoe XR - 6K7cCtQAkY0" parent="CSGCombiner3D/Fondo1" unique_id=459403793 instance=ExtResource("23_ypd7n")]
+transform = Transform3D(0.9999995, 0, 2.1316282e-14, 0, 1, 0, -7.1054274e-15, 0, 2.0966902, -76.924835, -6.391818, 20.59689)
+
+[node name="papel" parent="CSGCombiner3D/Fondo1" unique_id=1000632120 instance=ExtResource("32_dfoa3")]
+transform = Transform3D(-0.023348814, 4.691297, 0.284815, 0.011708094, -0.28476033, 4.691354, -4.6999226, -0.024015337, 0.010271801, -76.27809, -2.8856454, 21.846207)
+
+[node name="papel2" parent="CSGCombiner3D/Fondo1" unique_id=1871923431 instance=ExtResource("32_dfoa3")]
+transform = Transform3D(2.0511338e-07, -4.6976857, -0.14732935, -1.6463304e-08, 0.14732918, -4.6976895, -4.6999946, -2.055287e-07, 1.0025599e-08, -76.19571, -2.8652818, 19.705956)
+
+[node name="papel3" parent="CSGCombiner3D/Fondo1" unique_id=761229169 instance=ExtResource("32_dfoa3")]
+transform = Transform3D(-1.6857017e-07, 4.681031, 0.42177844, 4.0922905e-07, -0.4217781, 4.681036, -4.699994, -2.0461434e-07, 3.9245015e-07, -76.29074, -2.942472, 23.93304)
+
+[node name="papel4" parent="CSGCombiner3D/Fondo1" unique_id=318529989 instance=ExtResource("32_dfoa3")]
+transform = Transform3D(-1.8957786e-07, 5.8192134, 5.4896936, 5.087323e-07, -5.4896946, 5.8192143, -7.999999, -4.8699724e-07, 2.399621e-07, -78.98277, -2.4019394, 22.38118)
+
+[node name="papel5" parent="CSGCombiner3D/Fondo1" unique_id=664857697 instance=ExtResource("32_dfoa3")]
+transform = Transform3D(1.0249855e-07, 6.10293, 5.172445, 5.335348e-07, -5.1724486, 6.102928, -7.9999943, -2.6676753e-07, 4.7328675e-07, -78.84906, -2.350419, 18.898151)
+
+[node name="Chair by Poly by Google - 13AL0KYItKD" parent="CSGCombiner3D/Fondo1" unique_id=1446449209 instance=ExtResource("26_htw5t")]
+transform = Transform3D(-0.0030336406, 0, 0.39998835, 0, 0.39999998, 0, -0.39998835, 0, -0.0030336406, -78.04442, -6.375117, 36.027515)
+
+[node name="Chair by Poly by Google - 13AL0KYItKD2" parent="CSGCombiner3D/Fondo1" unique_id=1214717185 instance=ExtResource("26_htw5t")]
+transform = Transform3D(-0.010869656, 0, 0.39985213, 0, 0.4, 0, -0.39985213, 0, -0.010869656, -78.16214, -6.6148605, 3.8322449)
+
+[node name="Chair by Poly by Google - 13AL0KYItKD3" parent="CSGCombiner3D/Fondo1" unique_id=1773505183 instance=ExtResource("26_htw5t")]
+transform = Transform3D(0.0023174703, 0, 0.39999288, 0, 0.39999995, 0, -0.39999288, 0, 0.0023174703, -78.13269, -6.3724666, 12.872182)
+
+[node name="Chair by Poly by Google - 13AL0KYItKD4" parent="CSGCombiner3D/Fondo1" unique_id=1309193522 instance=ExtResource("26_htw5t")]
+transform = Transform3D(-0.004787249, 0, 0.39997107, 0, 0.4, 0, -0.39997107, 0, -0.004787249, -78.394196, -6.539134, 28.52314)
 
 [node name="ventana2" type="CSGBox3D" parent="CSGCombiner3D/Fondo1" unique_id=1579042884]
 transform = Transform3D(-0.9994847, 0, -0.032088824, 0, 1, 0, 0.032088824, 0, -0.9994847, 21.558044, -1.0733995, -0.0039987564)
@@ -1691,7 +1738,7 @@ script = ExtResource("33_24mmi")
 transform = Transform3D(-0.071544945, 0, 0.99743736, 0, 1, 0, -0.99743736, 0, -0.071544945, 724.6493, 327.21085, 130.42719)
 
 [node name="Player" parent="." unique_id=592294200 instance=ExtResource("3_fwwnx")]
-transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -3.7886543, 3.564158, -56.810146)
+transform = Transform3D(2.9998407, 0.030079775, 0.0071059354, -0.030089002, 2.9998465, 0.0038706716, -0.0070667616, -0.003941736, 2.999989, -30.992462, 3.564158, -67.20326)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=316596278]
 
@@ -1714,20 +1761,10 @@ transform = Transform3D(-0.08927243, 0, -1.3854644, 0, 1.5, 0, 1.4906185, 0, -0.
 transform = Transform3D(-0.99927425, 0, 0.038091414, 0, 1, 0, -0.038091414, 0, -0.99927425, 14.606436, -0.44174504, -78.442955)
 
 [node name="papel" parent="." unique_id=1419067830 instance=ExtResource("33_5fy6y")]
-transform = Transform3D(4.7615957, 0, 0, 0, 5.6300273, 0, 0, 0, -0.20220363, -28.202984, 4.7617426, -91.1966)
-
-[node name="Tree by Marc Solà - 6Yjt8nIwLsD" parent="." unique_id=300902676 instance=ExtResource("12_ebabg")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 17.155005, -0.09254527, -75.88727)
+transform = Transform3D(4.7615957, 4.9219256e-07, 8.563656e-23, -1.7424975e-08, 0.23567066, -0.20202638, 4.1590704e-07, -5.625092, -0.008464162, -25.559418, 3.23514, -89.930786)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=761471835]
 
 [node name="MenuPausa" parent="CanvasLayer" unique_id=1910793488 instance=ExtResource("35_0dlxw")]
 
 [node name="Label" parent="." unique_id=547451351 instance=ExtResource("36_ebabg")]
-
-[node name="Node3D" parent="." unique_id=1105136810 instance=ExtResource("38_tqd2s")]
-transform = Transform3D(0.0062543694, 0, -0.24992175, 0, 0.25, 0, 0.24992175, 0, 0.0062543694, 125.85539, 4.5234685, -43.641994)
-script = ExtResource("39_24mmi")
-
-[node name="Table by Zoe XR - 6K7cCtQAkY0" parent="." unique_id=1764894926 instance=ExtResource("23_ypd7n")]
-transform = Transform3D(0.587813, 0, 0, 0, 1, 0, 0, 0, 0.6289574, 127.82298, -0.05764532, -45.685093)
