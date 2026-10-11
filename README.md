@@ -7,4 +7,4 @@ Jira
 https://proyectomuseo.atlassian.net/jira/software/projects/ZXCV/boards/2?filter=&groupBy=none
 
 GDD
-https://docs.google.com/document/d/144DyJh8fu7F46V1ZPXzVF2fELO8GWy31bHXJpQZd8Uw/edit?tab=t.0
+https://docs.google.com/document/d/17PPPF0uSdib5PtA_3tZ3BtnZz5nXuZ1XBUR3lGmMczw/edit?usp=sharing
